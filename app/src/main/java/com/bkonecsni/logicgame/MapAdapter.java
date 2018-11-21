@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bkonecsni.logicgame.domain.map.TileBase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +16,21 @@ import logicgame.bkonecsni.com.logicgame.R;
 
 public class MapAdapter extends BaseAdapter {
 
-    List<String> colorList = new ArrayList<>();
+    List<TileBase> tileList = new ArrayList<>();
 
-    public MapAdapter(List<String> colors) {
-        colorList.addAll(colors);
+    public MapAdapter(List<TileBase> tiles) {
+        tileList.addAll(tiles);
     }
 
+    List<String> colorList = new ArrayList<>();
+
+//    public MapAdapter(List<String> colors) {
+//        colorList.addAll(colors);
+//    }
+
     public int getCount() {
-        return colorList.size();
+//        return colorList.size();
+        return tileList.size();
     }
 
     public Object getItem(int position) {
@@ -44,7 +53,7 @@ public class MapAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setBackgroundColor(Color.parseColor(colorList.get(position)));
+        imageView.setBackgroundColor(Color.parseColor(tileList.get(position).getColor(0)/*colorList.get(position)*/));
         return imageView;
     }
 }

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
 
+import com.bkonecsni.logicgame.gamecode.parks.ParksGameInfo;
 import com.bkonecsni.logicgame.gamecode.parks.levels.Level1;
 
 import logicgame.bkonecsni.com.logicgame.R;
@@ -19,14 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
         GridView mapView = findViewById(R.id.map);
 
+        ParksGameInfo parksGameInfo = new ParksGameInfo();
+        parksGameInfo.init();
 
-        Level1 parks = new Level1();
-        parks.init();
+        Level1 parks = (Level1) parksGameInfo.getMaps().get(0);
 
-        mapView.setAdapter(new MapAdapter(parks.getTileListColor()));
+        mapView.setAdapter(new MapAdapter(parks.getTileList()));
         mapView.setOnItemClickListener((parent, v, position, id) -> {
             parks.getTile(position).handleState();
-            ((MapAdapter) mapView.getAdapter()).colorList = parks.getTileListColor();
+            ((MapAdapter) mapView.getAdapter()).tileList = parks.getTileList();
             ((MapAdapter) mapView.getAdapter()).notifyDataSetChanged();
         });
     }

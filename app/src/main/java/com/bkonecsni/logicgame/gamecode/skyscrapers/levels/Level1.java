@@ -5,7 +5,6 @@ import com.bkonecsni.logicgame.gamecode.skyscrapers.types.Type0Tile;
 import com.bkonecsni.logicgame.domain.map.LevelBase;
 import com.bkonecsni.logicgame.domain.common.Item;
 import com.bkonecsni.logicgame.domain.common.Point;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 

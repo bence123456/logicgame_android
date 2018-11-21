@@ -1,6 +1,7 @@
 package com.bkonecsni.logicgame.gamecode.sumscrapers.validation;
 
 import com.bkonecsni.logicgame.domain.common.Item;
+import com.bkonecsni.logicgame.domain.map.LevelBase;
 import com.bkonecsni.logicgame.domain.map.TileBase;
 import com.bkonecsni.logicgame.domain.validation.ValidationBase;
 import java.util.ArrayList;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class SumscrapersValidation extends ValidationBase {
 
-    public boolean areWinConditionsApply() {
+    public boolean areWinConditionsApply(LevelBase map) {
         List<TileBase> tiles = map.getTileList();
         for (TileBase tile : tiles) {
             if (tile.isHelper()) {
