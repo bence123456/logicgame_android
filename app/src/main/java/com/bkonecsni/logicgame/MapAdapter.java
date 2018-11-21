@@ -1,22 +1,27 @@
 package com.bkonecsni.logicgame;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import logicgame.bkonecsni.com.logicgame.R;
 
 public class MapAdapter extends BaseAdapter {
-    private Context mContext;
 
-    public MapAdapter(Context c) {
-        mContext = c;
+    List<String> colorList = new ArrayList<>();
+
+    public MapAdapter(List<String> colors) {
+        colorList.addAll(colors);
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return colorList.size();
     }
 
     public Object getItem(int position) {
@@ -31,8 +36,7 @@ public class MapAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
+            imageView = new ImageView(parent.getContext());
             imageView.setLayoutParams(new ViewGroup.LayoutParams(85, 85));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
@@ -40,22 +44,7 @@ public class MapAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+        imageView.setBackgroundColor(Color.parseColor(colorList.get(position)));
         return imageView;
     }
-
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher,
-            R.mipmap.ic_launcher
-    };
 }

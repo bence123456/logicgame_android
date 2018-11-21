@@ -1,12 +1,12 @@
 package com.bkonecsni.logicgame;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
+
+import com.bkonecsni.logicgame.gamecode.parks.levels.Level1;
 
 import logicgame.bkonecsni.com.logicgame.R;
 
@@ -18,14 +18,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GridView mapView = findViewById(R.id.map);
-        mapView.setAdapter(new MapAdapter(this));
 
-        mapView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-                Toast.makeText(MainActivity.this, "" + position,
-                        Toast.LENGTH_SHORT).show();
-            }
+
+        Level1 parks = new Level1();
+        parks.init();
+
+        mapView.setAdapter(new MapAdapter(parks.getTileListColor()));
+        mapView.setOnItemClickListener((parent, v, position, id) -> {
+            parks.getTile(position).handleState();
+            ((MapAdapter) mapView.getAdapter()).colorList = parks.getTileListColor();
+            ((MapAdapter) mapView.getAdapter()).notifyDataSetChanged();
         });
     }
 

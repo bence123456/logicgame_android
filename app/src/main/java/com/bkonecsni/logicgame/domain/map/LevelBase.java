@@ -157,7 +157,7 @@ public abstract class LevelBase {
         return tilesInColumn;
     }
 
-    public List<String> getColorList() {
+    public List<String> getDistinctPlayableTileColorList() {
         List<String> colors = new ArrayList<>();
 
         for (TileBase tile : tileList) {
@@ -181,6 +181,16 @@ public abstract class LevelBase {
         }
 
         return tiles;
+    }
+
+    public List<String> getTileListColor() {
+        List<String> tileColors = new ArrayList<>();
+
+        for (TileBase tile : tileList) {
+            tileColors.add(tile.getItemList().get(0).getColor());
+        }
+
+        return tileColors;
     }
 
     public List<TileBase> getNeighboursForTile(TileBase tile) {
@@ -346,7 +356,7 @@ public abstract class LevelBase {
 
     private Map<String, List<TileBase>> createColorAreaTilesMap() {
         Map<String, List<TileBase>> colorAreaTilesMap = new HashMap<>();
-        List<String> colorList = getColorList();
+        List<String> colorList = getDistinctPlayableTileColorList();
 
         for (String color : colorList) {
             List<TileBase> tilesForcolor = getTilesForColor(color);
