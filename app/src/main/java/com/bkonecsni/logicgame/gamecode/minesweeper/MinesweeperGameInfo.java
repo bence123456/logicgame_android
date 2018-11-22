@@ -9,8 +9,8 @@ public class MinesweeperGameInfo extends AbstractGameInfo {
 
     public void init() {
         gameName = "minesweeper";
-        symbolsMap.put("S1", "src/main/resources/images/symbols/dot.svg");
-        symbolsMap.put("S2", "src/main/resources/images/symbols/bomb.png");
+        symbolsMap.put("S1", "dotwhite");
+        symbolsMap.put("S2", "bomb");
         validationHandler = new MinesweeperValidation();
         maps = Arrays.asList(new Level1());
         postProcessGameDefinition();

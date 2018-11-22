@@ -9,8 +9,8 @@ public class Lighten_upGameInfo extends AbstractGameInfo {
 
     public void init() {
         gameName = "lighten_up";
-        symbolsMap.put("S1", "src/main/resources/images/symbols/dot.svg");
-        symbolsMap.put("S2", "src/main/resources/images/symbols/lightbulb.png");
+        symbolsMap.put("S1", "dotwhite");
+        symbolsMap.put("S2", "lightbulb");
         validationHandler = new Lighten_upValidation();
         maps = Arrays.asList(new Level1());
         postProcessGameDefinition();

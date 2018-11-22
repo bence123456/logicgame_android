@@ -1,35 +1,31 @@
 package com.bkonecsni.logicgame;
 
-import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Icon;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
+import com.bkonecsni.logicgame.domain.common.Item;
 import com.bkonecsni.logicgame.domain.map.TileBase;
+import com.bkonecsni.logicgame.util.IconProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import logicgame.bkonecsni.com.logicgame.R;
-
 public class MapAdapter extends BaseAdapter {
 
     List<TileBase> tileList = new ArrayList<>();
+    private AbstractGameInfo gameInfo;
 
-    public MapAdapter(List<TileBase> tiles) {
+    public MapAdapter(List<TileBase> tiles, AbstractGameInfo gameInfo) {
         tileList.addAll(tiles);
+        this.gameInfo = gameInfo;
     }
 
-    List<String> colorList = new ArrayList<>();
-
-//    public MapAdapter(List<String> colors) {
-//        colorList.addAll(colors);
-//    }
-
     public int getCount() {
-//        return colorList.size();
         return tileList.size();
     }
 
@@ -53,7 +49,18 @@ public class MapAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setBackgroundColor(Color.parseColor(tileList.get(position).getColor(0)/*colorList.get(position)*/));
+        TileBase tile = tileList.get(position);
+        imageView.setBackgroundColor(Color.parseColor(tile.getColor(0)));
+
+        Item item = tile.getItem(1);
+        if (item != null) {
+            Icon icon = IconProvider.getIcon(item, gameInfo);
+            imageView.setImageIcon(icon);
+        } else {
+            imageView.setImageIcon(null);
+        }
+
         return imageView;
     }
+
 }

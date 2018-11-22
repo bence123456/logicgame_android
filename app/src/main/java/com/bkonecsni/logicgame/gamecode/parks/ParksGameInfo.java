@@ -11,8 +11,8 @@ public class ParksGameInfo extends AbstractGameInfo {
 
     public void init() {
         gameName = "parks";
-        symbolsMap.put("S1", "src/main/resources/images/symbols/dot.svg");
-        symbolsMap.put("S2", "src/main/resources/images/symbols/tree.png");
+        symbolsMap.put("S1", "dotwhite");
+        symbolsMap.put("S2", "tree");
         validationHandler = new ParksValidation();
         maps = Arrays.asList(new Level1(), new Level2(), new Level3());
         postProcessGameDefinition();
