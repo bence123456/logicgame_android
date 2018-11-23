@@ -3,9 +3,8 @@ package com.bkonecsni.logicgame;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.domain.map.LevelBase;
@@ -38,12 +37,17 @@ public class MainActivity extends AppCompatActivity {
                 level1.getTile(position).handleState();
                 ((MapAdapter) mapView.getAdapter()).tileList = level1.getTileList();
                 ((MapAdapter) mapView.getAdapter()).notifyDataSetChanged();
+
+                if (gameInfo.getValidationHandler().areWinConditionsApply(level1)) {
+                    Toast.makeText(context, "You won!", Toast.LENGTH_SHORT).show();
+                }
+
             });
         }
 
     }
 
-    // TODO: iter through packages in gamecode and load every gameinfo
+    // TODO: iter through packages in gamecode and load every gameinfo or add property
     private List<AbstractGameInfo> getGameInfoList() {
         return Arrays.asList(new ParksGameInfo());
     }

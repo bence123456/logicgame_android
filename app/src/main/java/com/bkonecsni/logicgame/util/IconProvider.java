@@ -22,7 +22,6 @@ public class IconProvider {
             icon = Icon.createWithResource(appContext, drawable);
         } else if (item.getIntValue() != null) {
             int drawable = NumberIconMap.getDrawableIcon(item.getIntValue());
-//            int drawable = getDrawable(String.valueOf(item.getIntValue()));
             icon = Icon.createWithResource(appContext, drawable);
         } else {
             int drawable = getDrawable(item.getSymbol(), gameInfo);
