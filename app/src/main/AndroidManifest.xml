@@ -9,13 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bkonecsni.logicgame.MainActivity">
+        <activity android:name="com.bkonecsni.logicgame.activities.MapActivity" />
+        <activity android:name="com.bkonecsni.logicgame.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.bkonecsni.logicgame.activities.GamesActivity" />
+        <activity android:name="com.bkonecsni.logicgame.activities.AboutActivity" />
+        <activity android:name="com.bkonecsni.logicgame.activities.LevelsActivity"></activity>
     </application>
 
 </manifest>

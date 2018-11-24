@@ -1,4 +1,4 @@
-package com.bkonecsni.logicgame;
+package com.bkonecsni.logicgame.adapters;
 
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
@@ -54,7 +54,7 @@ public class MapAdapter extends BaseAdapter {
 
         Item item = tile.getItem(1);
         if (item != null) {
-            Icon icon = IconProvider.getIcon(item, gameInfo);
+            Icon icon = IconProvider.getIconForMap(item, gameInfo);
             imageView.setImageIcon(icon);
         } else {
             imageView.setImageIcon(null);
@@ -63,4 +63,7 @@ public class MapAdapter extends BaseAdapter {
         return imageView;
     }
 
+    public void setTileList(List<TileBase> tileList) {
+        this.tileList = tileList;
+    }
 }
