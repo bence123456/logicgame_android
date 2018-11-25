@@ -37,24 +37,24 @@ public class LevelsActivity extends AppCompatActivity {
         AbstractGameInfo gameInfo = GameUtil.getGameInfo(getIntent().getStringExtra(GAME_NAME));
 
 
-        Context context = setGameIcon(gameInfo);
-        setGmaeTitle(gameInfo);
+        Context context = getApplicationContext();
+        String gameName = gameInfo.getGameName();
+        setGameIcon(context, gameName);
+        setGmaeTitle(gameName);
         addLinkToHome(context);
     }
 
-    @NonNull
-    private Context setGameIcon(AbstractGameInfo gameInfo) {
+    private void setGameIcon(Context context, String gameName) {
         ImageView imageView = findViewById(R.id.imageView);
-        String iconName = gameInfo.getGameName() + "_icon";
-        Context context = getApplicationContext();
+        String iconName = gameName + "_icon";
+
         int icon = IconProvider.getDrawable(context, iconName);
         imageView.setImageIcon(Icon.createWithResource(context, icon));
-        return context;
     }
 
-    private void setGmaeTitle(AbstractGameInfo gameInfo) {
+    private void setGmaeTitle(String gameName) {
         TextView title = findViewById(R.id.title);
-        title.setText(StringUtils.capitalize(gameInfo.getGameName()));
+        title.setText(StringUtils.capitalize(gameName));
     }
 
     private void addLinkToHome(Context context) {

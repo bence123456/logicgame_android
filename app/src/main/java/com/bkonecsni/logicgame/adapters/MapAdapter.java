@@ -2,6 +2,7 @@ package com.bkonecsni.logicgame.adapters;
 
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -30,7 +31,7 @@ public class MapAdapter extends BaseAdapter {
     }
 
     public Object getItem(int position) {
-        return null;
+        return tileList.get(position);
     }
 
     public long getItemId(int position) {
@@ -39,6 +40,15 @@ public class MapAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+        ImageView imageView = setupImageView(convertView, parent);
+
+        hanldeChange(position, imageView);
+
+        return imageView;
+    }
+
+    @NonNull
+    private ImageView setupImageView(View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(parent.getContext());
@@ -49,7 +59,10 @@ public class MapAdapter extends BaseAdapter {
         } else {
             imageView = (ImageView) convertView;
         }
+        return imageView;
+    }
 
+    private void hanldeChange(int position, ImageView imageView) {
         TileBase tile = tileList.get(position);
         imageView.setBackgroundColor(Color.parseColor(tile.getColor(0)));
 
@@ -60,8 +73,6 @@ public class MapAdapter extends BaseAdapter {
         } else {
             imageView.setImageIcon(null);
         }
-
-        return imageView;
     }
 
     public void setTileList(List<TileBase> tileList) {
