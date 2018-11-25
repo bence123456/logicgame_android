@@ -4,12 +4,15 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bkonecsni.logicgame.adapters.MapAdapter;
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.domain.map.LevelBase;
 import com.bkonecsni.logicgame.util.GameUtil;
+
+import org.apache.commons.lang3.StringUtils;
 
 import logicgame.bkonecsni.com.logicgame.R;
 
@@ -25,7 +28,6 @@ public class MapActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         MapActivity.context = getApplicationContext();
         setContentView(R.layout.activity_map);
-
         GridView mapView = findViewById(R.id.map);
 
         int levelNumber = getIntent().getIntExtra(LEVEL_NUMBER, 1);
@@ -33,9 +35,14 @@ public class MapActivity extends AppCompatActivity {
         LevelBase level = GameUtil.getLevel(gameName, levelNumber);
         AbstractGameInfo gameInfo = GameUtil.getGameInfo(gameName);
 
-        int columnNumber = gameInfo.getMaps().get(levelNumber).getColumnNumber();
-        mapView.setNumColumns(columnNumber);
+        setColumnNumber(mapView, levelNumber, gameInfo);
+        setTitle(gameName);
+        setLevelNumber(levelNumber);
 
+        addOnClickListener(mapView, level, gameInfo);
+    }
+
+    private void addOnClickListener(GridView mapView, LevelBase level, AbstractGameInfo gameInfo) {
         mapView.setAdapter(new MapAdapter(level.getTileList(), gameInfo));
         mapView.setOnItemClickListener((parent, v, position, id) -> {
             level.getTile(position).handleState();
@@ -46,7 +53,21 @@ public class MapActivity extends AppCompatActivity {
                 Toast.makeText(context, "You won!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    private void setLevelNumber(int levelNumber) {
+        TextView levelNumberTextView = findViewById(R.id.levelNumber);
+        levelNumberTextView.setText("Level " + levelNumber);
+    }
+
+    private void setTitle(String gameName) {
+        TextView gameTitleTextView = findViewById(R.id.gameTitle);
+        gameTitleTextView.setText(StringUtils.capitalize(gameName ));
+    }
+
+    private void setColumnNumber(GridView mapView, int levelNumber, AbstractGameInfo gameInfo) {
+        int columnNumber = gameInfo.getMaps().get(levelNumber).getColumnNumber();
+        mapView.setNumColumns(columnNumber);
     }
 
     public static Context getAppContext() {
