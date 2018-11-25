@@ -3,13 +3,13 @@ package com.bkonecsni.logicgame.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Icon;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bkonecsni.logicgame.adapters.LevelsAdapter;
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.util.GameUtil;
 import com.bkonecsni.logicgame.util.IconProvider;
@@ -28,20 +28,35 @@ public class LevelsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
 
-        Intent intent = new Intent(this, MapActivity.class);
-        intent.putExtra(GAME_NAME, getIntent().getStringExtra(GAME_NAME));
-        // TODO: uiról indexelés mehet 0tól
-        intent.putExtra(LEVEL_NUMBER, 1);
-
-        startActivity(intent);
         AbstractGameInfo gameInfo = GameUtil.getGameInfo(getIntent().getStringExtra(GAME_NAME));
+        GridView levelsView = findViewById(R.id.levels);
+        addOnClickListener(levelsView, gameInfo);
 
+        setupHeader(gameInfo);
+    }
 
+    private void setupHeader(AbstractGameInfo gameInfo) {
         Context context = getApplicationContext();
         String gameName = gameInfo.getGameName();
         setGameIcon(context, gameName);
         setGmaeTitle(gameName);
         addLinkToHome(context);
+    }
+
+    private void addOnClickListener(GridView levelsView, AbstractGameInfo gameInfo) {
+        levelsView.setAdapter(new LevelsAdapter(gameInfo.getMaps()));
+
+        levelsView.setOnItemClickListener((parent, v, position, id) -> {
+            startMapActivity(position);
+        });
+    }
+
+    private void startMapActivity(int position) {
+        Intent intent = new Intent(this, MapActivity.class);
+        intent.putExtra(GAME_NAME, getIntent().getStringExtra(GAME_NAME));
+        intent.putExtra(LEVEL_NUMBER, position);
+
+        startActivity(intent);
     }
 
     private void setGameIcon(Context context, String gameName) {

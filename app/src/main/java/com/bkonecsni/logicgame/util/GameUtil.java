@@ -55,7 +55,7 @@ public class GameUtil {
             Log.e(TAG, "GameInfo object for game: "+ gameName + " does not exists!");
         }
 
-        return gameInfo.getMaps().get(levelNumber-1);
+        return gameInfo.getMaps().get(levelNumber);
     }
 
 }

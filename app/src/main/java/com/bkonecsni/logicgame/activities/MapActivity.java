@@ -37,7 +37,7 @@ public class MapActivity extends AppCompatActivity {
 
         setColumnNumber(mapView, levelNumber, gameInfo);
         setTitle(gameName);
-        setLevelNumber(levelNumber);
+        setLevelNumber(levelNumber + 1);
 
         addOnClickListener(mapView, level, gameInfo);
     }

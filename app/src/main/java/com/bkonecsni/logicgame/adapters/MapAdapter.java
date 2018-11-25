@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MapAdapter extends BaseAdapter {
 
-    List<TileBase> tileList = new ArrayList<>();
+    private List<TileBase> tileList = new ArrayList<>();
     private AbstractGameInfo gameInfo;
 
     public MapAdapter(List<TileBase> tiles, AbstractGameInfo gameInfo) {
@@ -42,7 +42,7 @@ public class MapAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView = setupImageView(convertView, parent);
 
-        hanldeChange(position, imageView);
+        handleChange(position, imageView);
 
         return imageView;
     }
@@ -62,7 +62,7 @@ public class MapAdapter extends BaseAdapter {
         return imageView;
     }
 
-    private void hanldeChange(int position, ImageView imageView) {
+    private void handleChange(int position, ImageView imageView) {
         TileBase tile = tileList.get(position);
         imageView.setBackgroundColor(Color.parseColor(tile.getColor(0)));
 
