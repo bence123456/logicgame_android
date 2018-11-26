@@ -1,6 +1,7 @@
 package com.bkonecsni.logicgame.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,15 +50,62 @@ public class MapActivity extends AppCompatActivity {
         setTitle(gameName);
         setLevelNumber(levelNumber + 1);
 
-        addOnClickListener(mapView, level, gameInfo, levelNumber);
+        addListenerForMap(mapView, level, gameInfo, levelNumber);
+        addListenerForLevels(gameInfo);
+        addListenerForRules();
+        addListenerForRestart(mapView, level);
+        addListenerForNextLevel(levelNumber, gameInfo);
     }
 
-    private void addOnClickListener(GridView mapView, LevelBase level, AbstractGameInfo gameInfo, int levelNumber) {
+    private void addListenerForLevels(AbstractGameInfo gameInfo) {
+        ImageView levelsImage = findViewById(R.id.levels);
+        levelsImage.setOnClickListener(v -> {
+            Intent intent = new Intent(context, LevelsActivity.class);
+            intent.putExtra("gameName", gameInfo.getGameName());
+            context.startActivity(intent);
+        });
+    }
+
+    private void addListenerForRules() {
+        ImageView rulesImage = findViewById(R.id.rules);
+        rulesImage.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RulesActivity.class);
+            context.startActivity(intent);
+        });
+    }
+
+    private void addListenerForNextLevel(int levelNumber, AbstractGameInfo gameInfo) {
+        ImageView nextLevelImage = findViewById(R.id.nextLevel);
+        nextLevelImage.setOnClickListener(v -> {
+            if (gameInfo.getMaps().size() == levelNumber + 1) {
+                Toast.makeText(context, "The current level is the last one in this game!", Toast.LENGTH_SHORT).show();
+            } else {
+                startNextLevel(levelNumber);
+            }
+        });
+    }
+
+    private void startNextLevel(int levelNumber) {
+        Intent intent = new Intent(context, MapActivity.class);
+        intent.putExtra(GAME_NAME, getIntent().getStringExtra(GAME_NAME));
+        intent.putExtra(LEVEL_NUMBER, levelNumber + 1);
+
+        context.startActivity(intent);
+    }
+
+    private void addListenerForRestart(GridView mapView, LevelBase level) {
+        ImageView restartImage = findViewById(R.id.restart);
+        restartImage.setOnClickListener(v -> {
+            level.init();
+            refreshAdapter(mapView, level);
+        });
+    }
+
+    private void addListenerForMap(GridView mapView, LevelBase level, AbstractGameInfo gameInfo, int levelNumber) {
         mapView.setAdapter(new MapAdapter(level.getTileList(), gameInfo));
         mapView.setOnItemClickListener((parent, v, position, id) -> {
             level.getTile(position).handleState();
-            ((MapAdapter) mapView.getAdapter()).setTileList(level.getTileList());
-            ((MapAdapter) mapView.getAdapter()).notifyDataSetChanged();
+            refreshAdapter(mapView, level);
 
             if (gameInfo.getValidationHandler().areWinConditionsApply(level)) {
                 showToast();
@@ -64,6 +113,11 @@ public class MapActivity extends AppCompatActivity {
                 markLevelAsSolved(gameInfo, levelNumber);
             }
         });
+    }
+
+    private void refreshAdapter(GridView mapView, LevelBase level) {
+        ((MapAdapter) mapView.getAdapter()).setTileList(level.getTileList());
+        ((MapAdapter) mapView.getAdapter()).notifyDataSetChanged();
     }
 
     private void showToast() {
