@@ -10,7 +10,6 @@ import com.bkonecsni.logicgame.gamecode.parks.ParksGameInfo;
 import com.bkonecsni.logicgame.gamecode.skyscrapers.SkyscrapersGameInfo;
 import com.bkonecsni.logicgame.gamecode.sumscrapers.SumscrapersGameInfo;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,8 +23,7 @@ public class GameUtil {
     }
 
     private GameUtil() {
-        gameInfoList = Arrays.asList(new ParksGameInfo());
-//        Arrays.asList(new ParksGameInfo(), new MinesweeperGameInfo(), new Lighten_upGameInfo(), new SumscrapersGameInfo(), new SkyscrapersGameInfo());
+      gameInfoList = Arrays.asList(new ParksGameInfo(), new MinesweeperGameInfo(), new Lighten_upGameInfo(), new SumscrapersGameInfo(), new SkyscrapersGameInfo());
 
         for (AbstractGameInfo gameInfo : gameInfoList) {
             gameInfo.init();
