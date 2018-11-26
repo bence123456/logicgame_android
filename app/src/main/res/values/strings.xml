@@ -2,4 +2,5 @@
     <string name="app_name">Logic Games</string>
     <string name="about">About</string>
     <string name="games">Games</string>
+    <string name="aboutText">Logic game is a collection of 2D logical puzzles, just like the famous minesweeper. \n\n Available for free on Android\n\n(C) Bence Konecsni, v1.0</string>
 </resources>
