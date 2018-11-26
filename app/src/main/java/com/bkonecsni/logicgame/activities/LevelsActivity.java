@@ -63,11 +63,11 @@ public class LevelsActivity extends AppCompatActivity {
     }
 
     private void setGameIcon(Context context, String gameName) {
-        ImageView imageView = findViewById(R.id.imageView);
+        ImageView gameIcon = findViewById(R.id.gameIcon);
         String iconName = gameName + "_icon";
 
         int icon = IconProvider.getDrawable(context, iconName);
-        imageView.setImageIcon(Icon.createWithResource(context, icon));
+        gameIcon.setImageIcon(Icon.createWithResource(context, icon));
     }
 
     private void setGameTitle(String gameName) {

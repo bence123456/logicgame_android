@@ -4,94 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bkonecsni.logicgame.activities.MapActivity"
-    android:layout_margin="16dp">
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    tools:context="com.bkonecsni.logicgame.activities.MapActivity">
 
     <TextView
+        android:id="@+id/gameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/gameTitle"
-        android:textStyle="bold"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Parks"
         android:textSize="50dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/levelNumber"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_margin="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/levelNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
         android:text="Level 1"
         android:textSize="30dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/gameTitle"
+        app:layout_constraintBottom_toTopOf="@id/map"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gameTitle" />
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:verticalSpacing="1dp"
+        android:gravity="center"
         android:horizontalSpacing="1dp"
         android:stretchMode="columnWidth"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/levelNumber"
+        android:verticalSpacing="1dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/levelNumber" />
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/footerLayout"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#ffffff"
-        app:layout_constraintTop_toBottomOf="@id/map">
+    <ImageView
+        android:id="@+id/levels"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_more_horiz_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/rules"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/map" />
 
-        <ImageView
-            android:id="@+id/levels"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="left"
-            android:src="@drawable/levels" />
+    <ImageView
+        android:id="@+id/rules"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_rules"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/restart"
+        app:layout_constraintStart_toEndOf="@id/levels"
+        app:layout_constraintTop_toBottomOf="@id/map" />
 
-        <ImageView
-            android:id="@+id/rules"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="center"
-            android:src="@drawable/rules" />
+    <ImageView
+        android:id="@+id/restart"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_refresh_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/nextLevel"
+        app:layout_constraintStart_toEndOf="@id/rules"
+        app:layout_constraintTop_toBottomOf="@id/map" />
 
-        <ImageView
-            android:id="@+id/restart"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:src="@drawable/restart"/>
-
-        <ImageView
-            android:id="@+id/nextLevel"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:gravity="right"
-            android:src="@drawable/next" />
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/nextLevel"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:src="@drawable/ic_arrow_forward_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/restart"
+        app:layout_constraintTop_toBottomOf="@id/map" />
 
 
 </android.support.constraint.ConstraintLayout>

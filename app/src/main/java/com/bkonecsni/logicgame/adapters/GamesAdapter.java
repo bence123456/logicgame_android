@@ -59,10 +59,10 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }
 
     private void setGameIcon(@NonNull RecyclerView.ViewHolder viewHolder, AbstractGameInfo gameInfo) {
-        ImageView imageView = viewHolder.itemView.findViewById(R.id.imageView);
+        ImageView gameIcon = viewHolder.itemView.findViewById(R.id.gameIcon);
         String iconName = gameInfo.getGameName() + "_icon";
         int icon = IconProvider.getDrawable(context, iconName);
-        imageView.setImageIcon(Icon.createWithResource(context, icon));
+        gameIcon.setImageIcon(Icon.createWithResource(context, icon));
     }
 
     private void setTitle(@NonNull RecyclerView.ViewHolder viewHolder, AbstractGameInfo gameInfo) {
