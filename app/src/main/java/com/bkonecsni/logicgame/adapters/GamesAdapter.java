@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.bkonecsni.logicgame.activities.LevelsActivity;
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.util.IconProvider;
+import com.bkonecsni.logicgame.util.StringService;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -41,38 +42,38 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        AbstractGameInfo gameInfo = gameInfoList.get(i);
+        String gameName = gameInfoList.get(i).getGameName();
 
-        addOnClickListener(viewHolder, gameInfo);
+        addOnClickListener(viewHolder, gameName);
 
-        setGameIcon(viewHolder, gameInfo);
-        setTitle(viewHolder, gameInfo);
-        setDescription(viewHolder, gameInfo);
+        setGameIcon(viewHolder, gameName);
+        setTitle(viewHolder, gameName);
+        setDescription(viewHolder);
     }
 
-    private void addOnClickListener(@NonNull RecyclerView.ViewHolder viewHolder, AbstractGameInfo gameInfo) {
+    private void addOnClickListener(@NonNull RecyclerView.ViewHolder viewHolder, String gameName) {
         viewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, LevelsActivity.class);
-            intent.putExtra("gameName", gameInfo.getGameName());
+            intent.putExtra("gameName", gameName);
             context.startActivity(intent);
         });
     }
 
-    private void setGameIcon(@NonNull RecyclerView.ViewHolder viewHolder, AbstractGameInfo gameInfo) {
+    private void setGameIcon(@NonNull RecyclerView.ViewHolder viewHolder, String gameName) {
         ImageView gameIcon = viewHolder.itemView.findViewById(R.id.gameIcon);
-        String iconName = gameInfo.getGameName() + "_icon";
+        String iconName = gameName + "_icon";
         int icon = IconProvider.getDrawable(context, iconName);
         gameIcon.setImageIcon(Icon.createWithResource(context, icon));
     }
 
-    private void setTitle(@NonNull RecyclerView.ViewHolder viewHolder, AbstractGameInfo gameInfo) {
+    private void setTitle(@NonNull RecyclerView.ViewHolder viewHolder, String gameName) {
         TextView title = viewHolder.itemView.findViewById(R.id.title);
-        title.setText(StringUtils.capitalize(gameInfo.getGameName()));
+        title.setText(StringService.getFormattedTitle(gameName));
     }
 
-    private void setDescription(@NonNull RecyclerView.ViewHolder viewHolder, AbstractGameInfo gameInfo) {
+    private void setDescription(@NonNull RecyclerView.ViewHolder viewHolder) {
         TextView description = viewHolder.itemView.findViewById(R.id.description);
-        description.setText(StringUtils.capitalize(gameInfo.getGameName() + "sadsafsagfdsa cad wdsac asr qwrw awfd saf"));
+        description.setText("sadsafsagfdsa cad wdsac asr qwrw awfd saf");
     }
 
     @Override

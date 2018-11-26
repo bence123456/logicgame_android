@@ -19,6 +19,7 @@ import com.bkonecsni.logicgame.adapters.MapAdapter;
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.domain.map.LevelBase;
 import com.bkonecsni.logicgame.util.GameUtil;
+import com.bkonecsni.logicgame.util.StringService;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -162,7 +163,7 @@ public class MapActivity extends AppCompatActivity {
 
     private void setTitle(String gameName) {
         TextView gameTitleTextView = findViewById(R.id.gameTitle);
-        gameTitleTextView.setText(StringUtils.capitalize(gameName ));
+        gameTitleTextView.setText(StringService.getFormattedTitle(gameName));
     }
 
     private void setColumnNumber(GridView mapView, int levelNumber, AbstractGameInfo gameInfo) {

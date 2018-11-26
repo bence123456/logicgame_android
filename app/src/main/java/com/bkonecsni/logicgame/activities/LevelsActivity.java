@@ -13,6 +13,7 @@ import com.bkonecsni.logicgame.adapters.LevelsAdapter;
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.util.GameUtil;
 import com.bkonecsni.logicgame.util.IconProvider;
+import com.bkonecsni.logicgame.util.StringService;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -80,7 +81,7 @@ public class LevelsActivity extends AppCompatActivity {
 
     private void setGameTitle(String gameName) {
         TextView title = findViewById(R.id.title);
-        title.setText(StringUtils.capitalize(gameName));
+        title.setText(StringService.getFormattedTitle(gameName));
     }
 
     private void addLinkToHome(Context context) {
