@@ -2,9 +2,13 @@ package com.bkonecsni.logicgame.activities;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,15 +59,27 @@ public class MapActivity extends AppCompatActivity {
             ((MapAdapter) mapView.getAdapter()).notifyDataSetChanged();
 
             if (gameInfo.getValidationHandler().areWinConditionsApply(level)) {
-                Toast.makeText(context, "You won!", Toast.LENGTH_SHORT).show();
+                showToast();
 
                 markLevelAsSolved(gameInfo, levelNumber);
             }
         });
     }
 
+    private void showToast() {
+        Toast toast = Toast.makeText(context, "Level solved!", Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 150);
+
+        View view = toast.getView();
+        view.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+        TextView text = view.findViewById(android.R.id.message);
+        text.setTextColor(Color.BLACK);
+
+        toast.show();
+    }
+
     private void markLevelAsSolved(AbstractGameInfo gameInfo, int levelNumber) {
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LevelsActivity.getAppContext());//this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(LevelsActivity.getAppContext());
 
         String solvedLevels = sharedPref.getString(gameInfo.getGameName(), "");
         List<String> solvedLevelsList = Arrays.asList(solvedLevels.split(","));
