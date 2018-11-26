@@ -23,30 +23,33 @@ public class LevelsActivity extends AppCompatActivity {
     public static final String GAME_NAME = "gameName";
     public static final String LEVEL_NUMBER = "levelName";
 
+    private static Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_levels);
+        LevelsActivity.context = getApplicationContext();
 
         AbstractGameInfo gameInfo = GameUtil.getGameInfo(getIntent().getStringExtra(GAME_NAME));
         GridView levelsView = findViewById(R.id.levels);
         addOnClickListener(levelsView, gameInfo);
-
+        ((LevelsAdapter) levelsView.getAdapter()).notifyDataSetChanged();
         setupHeader(gameInfo);
     }
 
     private void setupHeader(AbstractGameInfo gameInfo) {
-        Context context = getApplicationContext();
         String gameName = gameInfo.getGameName();
         setGameIcon(context, gameName);
-        setGmaeTitle(gameName);
+        setGameTitle(gameName);
         addLinkToHome(context);
     }
 
     private void addOnClickListener(GridView levelsView, AbstractGameInfo gameInfo) {
-        levelsView.setAdapter(new LevelsAdapter(gameInfo.getMaps()));
+        levelsView.setAdapter(new LevelsAdapter(gameInfo.getMaps(), gameInfo.getGameName()));
 
         levelsView.setOnItemClickListener((parent, v, position, id) -> {
+            ((LevelsAdapter) levelsView.getAdapter()).notifyDataSetChanged();
             startMapActivity(position);
         });
     }
@@ -67,7 +70,7 @@ public class LevelsActivity extends AppCompatActivity {
         imageView.setImageIcon(Icon.createWithResource(context, icon));
     }
 
-    private void setGmaeTitle(String gameName) {
+    private void setGameTitle(String gameName) {
         TextView title = findViewById(R.id.title);
         title.setText(StringUtils.capitalize(gameName));
     }
@@ -82,5 +85,9 @@ public class LevelsActivity extends AppCompatActivity {
             Intent intent = new Intent(context, HomeActivity.class);
             startActivity(intent);
         });
+    }
+
+    public static Context getAppContext() {
+        return LevelsActivity.context;
     }
 }
