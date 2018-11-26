@@ -25,6 +25,8 @@ public class LevelsActivity extends AppCompatActivity {
 
     private static Context context;
 
+    private GridView levelsView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,10 +34,16 @@ public class LevelsActivity extends AppCompatActivity {
         LevelsActivity.context = getApplicationContext();
 
         AbstractGameInfo gameInfo = GameUtil.getGameInfo(getIntent().getStringExtra(GAME_NAME));
-        GridView levelsView = findViewById(R.id.levels);
+        levelsView = findViewById(R.id.levels);
         addOnClickListener(levelsView, gameInfo);
         ((LevelsAdapter) levelsView.getAdapter()).notifyDataSetChanged();
         setupHeader(gameInfo);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((LevelsAdapter) levelsView.getAdapter()).notifyDataSetChanged();
     }
 
     private void setupHeader(AbstractGameInfo gameInfo) {
