@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class IconProvider {
 
+    public static final String DEFAULT_PACKAGE = "logicgame.bkonecsni.com.logicgame";
+
     public static Icon getIconForMap(Item item, AbstractGameInfo gameInfo){
         Icon icon = null;
         Context appContext = MapActivity.getAppContext();
@@ -47,6 +49,6 @@ public class IconProvider {
 
     public static int getDrawable(Context context, String pictureName) {
         Resources resources = context.getResources();
-        return resources.getIdentifier(pictureName, "drawable", "logicgame.bkonecsni.com.logicgame");
+        return resources.getIdentifier(pictureName, "drawable", DEFAULT_PACKAGE);
     }
 }

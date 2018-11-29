@@ -20,7 +20,7 @@ import java.util.List;
 
 import logicgame.bkonecsni.com.logicgame.R;
 
-import static com.bkonecsni.logicgame.activities.RulesActivity.DEFAULT_PACKAGE;
+import static com.bkonecsni.logicgame.util.IconProvider.DEFAULT_PACKAGE;
 
 public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 

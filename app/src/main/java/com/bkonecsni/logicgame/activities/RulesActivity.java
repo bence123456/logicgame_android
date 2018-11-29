@@ -13,10 +13,9 @@ import logicgame.bkonecsni.com.logicgame.R;
 
 import static com.bkonecsni.logicgame.activities.LevelsActivity.GAME_NAME;
 import static com.bkonecsni.logicgame.activities.LevelsActivity.getAppContext;
+import static com.bkonecsni.logicgame.util.IconProvider.DEFAULT_PACKAGE;
 
 public class RulesActivity extends AppCompatActivity {
-
-    public static final String DEFAULT_PACKAGE = "logicgame.bkonecsni.com.logicgame";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
