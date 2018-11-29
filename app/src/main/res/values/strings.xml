@@ -3,4 +3,34 @@
     <string name="about">About</string>
     <string name="games">Games</string>
     <string name="aboutText">Logic game is a collection of 2D logical puzzles, just like the famous minesweeper. \n\n Available for free on Android\n\n(C) Bence Konecsni, v1.0</string>
+
+    <string name="parks_description">Plant the tree, but not too close to each other!</string>
+    <string name="minesweeper_description">The good old minesweeper</string>
+    <string name="lighten_up_description">Lighten your whole room!</string>
+    <string name="sumscrapers_description">Find the skyline!</string>
+    <string name="skyscrapers_description">Sum the skyline!</string>
+
+    <string name="parks_summary">Plant one tree in each Park, row and column.</string>
+    <string name="minesweeper_summary">I know you are familiar with this one :)</string>
+    <string name="lighten_up_summary">Place lightbulbs to light up all the room squares.</string>
+    <string name="sumscrapers_summary">Guess the sum of the skyscrapers from the skyline.</string>
+    <string name="skyscrapers_summary">Guess skyscrapers from the skyline.</string>
+
+    <string name="parks_rules">You have a few differently coloured areas, called Parks on the board.\n The goal is to plant trees, following the given rules:\n\n
+        1. A tree can not touch another tree, not even diagonally.\n
+        2. Each Park must have exactly one tree.\n
+        3. There must be exactly one tree in each row and column as well.</string>
+    <string name="minesweeper_rules">Find the mines on the field.\nNumbers tell you how many mines there are close by, touching that number horizontally, vertically or diagonally.</string>
+    <string name="lighten_up_rules">What you see from above is a room and the marked squares are walls.\n
+        The goal is to put lightbulbs in the room so that all the blank (non-wall) squares are lit, following these rules:\n\n
+        1. Lighbulbs light all free, unblocked squares horizontally and vertically.\n
+        2. A lightbulb can not light another lightbulb.\n
+        3. Walls block light. Also walls with a number tell you how many lightbulbs are adjacent to i, horizontally and vertically.\n
+        4. Walls without a number can have any number of lightbulbs. However, lightbulbs do not need to be adjacent to a wall.\n</string>
+    <string name="sumscrapers_rules">Please play \'Skyscrapers\' first, as this is a variaton of that game.\n
+        All the rules about \'Skyscrapers\' are valid, but the numbers you see on the borders tell you the SUM of the heights of the Skyscrapers you see.</string>
+    <string name="skyscrapers_rules">The central grid represents a city, as seen from above. Each square contains a Skyscraper with different height.\n
+        The goal is to guess the height of each Skyscraper.\n Skysrapers height ranges from 1 to the size of the city (number or rows/columns).\n
+        Each row and column can not have two Skyscrapers with same height. \n Outside the city, on the borders, the numbers indicate the \'Skyline\'.\n
+        The Skyline tells you how many Skyscrapers you can see from there, keeping in mind that a higher Skyscraper hides a lower one.</string>
 </resources>

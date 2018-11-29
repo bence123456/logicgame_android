@@ -16,11 +16,11 @@ import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.util.IconProvider;
 import com.bkonecsni.logicgame.util.StringService;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.List;
 
 import logicgame.bkonecsni.com.logicgame.R;
+
+import static com.bkonecsni.logicgame.activities.RulesActivity.DEFAULT_PACKAGE;
 
 public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -48,7 +48,7 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
         setGameIcon(viewHolder, gameName);
         setTitle(viewHolder, gameName);
-        setDescription(viewHolder);
+        setDescription(viewHolder, gameName);
     }
 
     private void addOnClickListener(@NonNull RecyclerView.ViewHolder viewHolder, String gameName) {
@@ -71,9 +71,11 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         title.setText(StringService.getFormattedTitle(gameName));
     }
 
-    private void setDescription(@NonNull RecyclerView.ViewHolder viewHolder) {
+    private void setDescription(@NonNull RecyclerView.ViewHolder viewHolder, String gameName) {
         TextView description = viewHolder.itemView.findViewById(R.id.description);
-        description.setText("sadsafsagfdsa cad wdsac asr qwrw awfd saf");
+
+        int resId = context.getResources().getIdentifier(gameName+"_description", "string", DEFAULT_PACKAGE);
+        description.setText(context.getString(resId));
     }
 
     @Override

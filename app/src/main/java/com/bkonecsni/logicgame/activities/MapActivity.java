@@ -71,6 +71,7 @@ public class MapActivity extends AppCompatActivity {
         ImageView rulesImage = findViewById(R.id.rules);
         rulesImage.setOnClickListener(v -> {
             Intent intent = new Intent(context, RulesActivity.class);
+            intent.putExtra(GAME_NAME, getIntent().getStringExtra(GAME_NAME));
             context.startActivity(intent);
         });
     }

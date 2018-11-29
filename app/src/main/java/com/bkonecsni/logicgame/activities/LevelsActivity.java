@@ -15,8 +15,6 @@ import com.bkonecsni.logicgame.util.GameUtil;
 import com.bkonecsni.logicgame.util.IconProvider;
 import com.bkonecsni.logicgame.util.StringService;
 
-import org.apache.commons.lang3.StringUtils;
-
 import logicgame.bkonecsni.com.logicgame.R;
 
 public class LevelsActivity extends AppCompatActivity {
@@ -51,7 +49,7 @@ public class LevelsActivity extends AppCompatActivity {
         String gameName = gameInfo.getGameName();
         setGameIcon(context, gameName);
         setGameTitle(gameName);
-        addLinkToHome(context);
+        addLinkToGames(context);
     }
 
     private void addOnClickListener(GridView levelsView, AbstractGameInfo gameInfo) {
@@ -84,14 +82,14 @@ public class LevelsActivity extends AppCompatActivity {
         title.setText(StringService.getFormattedTitle(gameName));
     }
 
-    private void addLinkToHome(Context context) {
-        ImageView homeLink = findViewById(R.id.homeLink);
+    private void addLinkToGames(Context context) {
+        ImageView gamesLink = findViewById(R.id.gamesLink);
 
         int icon = IconProvider.getDrawable(getApplicationContext(), "home_icon");
-        homeLink.setImageIcon(Icon.createWithResource(context, icon));
+        gamesLink.setImageIcon(Icon.createWithResource(context, icon));
 
-        homeLink.setOnClickListener(v -> {
-            Intent intent = new Intent(context, HomeActivity.class);
+        gamesLink.setOnClickListener(v -> {
+            Intent intent = new Intent(context, GamesActivity.class);
             startActivity(intent);
         });
     }

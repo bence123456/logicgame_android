@@ -42,7 +42,7 @@
             tools:text="Title" />
 
         <ImageView
-            android:id="@+id/homeLink"
+            android:id="@+id/gamesLink"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginTop="8dp"
