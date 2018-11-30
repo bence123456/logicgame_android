@@ -21,8 +21,6 @@ import com.bkonecsni.logicgame.domain.map.LevelBase;
 import com.bkonecsni.logicgame.util.GameUtil;
 import com.bkonecsni.logicgame.util.StringService;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,12 +31,12 @@ import static com.bkonecsni.logicgame.activities.LevelsActivity.LEVEL_NUMBER;
 
 public class MapActivity extends AppCompatActivity {
 
-    private static Context context;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        MapActivity.context = getApplicationContext();
+        context = getApplicationContext();
         setContentView(R.layout.activity_map);
         GridView mapView = findViewById(R.id.map);
 
@@ -170,9 +168,5 @@ public class MapActivity extends AppCompatActivity {
     private void setColumnNumber(GridView mapView, int levelNumber, AbstractGameInfo gameInfo) {
         int columnNumber = gameInfo.getMaps().get(levelNumber).getColumnNumber();
         mapView.setNumColumns(columnNumber);
-    }
-
-    public static Context getAppContext() {
-        return MapActivity.context;
     }
 }
