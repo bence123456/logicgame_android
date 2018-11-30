@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Icon;
 
-import com.bkonecsni.logicgame.activities.MapActivity;
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.domain.common.Item;
 
@@ -14,20 +13,19 @@ public class IconProvider {
 
     public static final String DEFAULT_PACKAGE = "logicgame.bkonecsni.com.logicgame";
 
-    public static Icon getIconForMap(Item item, AbstractGameInfo gameInfo){
+    public static Icon getIconForMap(Item item, AbstractGameInfo gameInfo, Context context){
         Icon icon = null;
-        Context appContext = MapActivity.getAppContext();
 
         if (item.getCharValue() != null) {
             int drawable = CharIconMap.getDrawableIcon(item.getCharValue());
 //            int drawable = getDrawable(String.valueOf(item.getCharValue()).toLowerCase());
-            icon = Icon.createWithResource(appContext, drawable);
+            icon = Icon.createWithResource(context, drawable);
         } else if (item.getIntValue() != null) {
             int drawable = NumberIconMap.getDrawableIcon(item.getIntValue());
-            icon = Icon.createWithResource(appContext, drawable);
+            icon = Icon.createWithResource(context, drawable);
         } else {
-            int drawable = getDrawable(item.getSymbol(), gameInfo, appContext);
-            icon = Icon.createWithResource(appContext, drawable);
+            int drawable = getDrawable(item.getSymbol(), gameInfo, context);
+            icon = Icon.createWithResource(context, drawable);
         }
 
         return icon;

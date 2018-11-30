@@ -44,7 +44,7 @@ public class MapAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView = setupImageView(convertView, parent);
 
-        handleChange(position, imageView);
+        handleChange(position, imageView, parent.getContext());
 
         return imageView;
     }
@@ -65,13 +65,13 @@ public class MapAdapter extends BaseAdapter {
         return imageView;
     }
 
-    private void handleChange(int position, ImageView imageView) {
+    private void handleChange(int position, ImageView imageView, Context context) {
         TileBase tile = tileList.get(position);
         imageView.setBackgroundColor(Color.parseColor(tile.getColor(0)));
 
         Item item = tile.getItem(1);
         if (item != null) {
-            Icon icon = IconProvider.getIconForMap(item, gameInfo);
+            Icon icon = IconProvider.getIconForMap(item, gameInfo, context);
             imageView.setImageIcon(icon);
         } else {
             imageView.setImageIcon(null);
