@@ -11,7 +11,7 @@ public class ParksGameInfo extends AbstractGameInfo {
 
     public void init() {
         gameName = "parks";
-        symbolsMap.put("S1", "dotwhite");
+        symbolsMap.put("S1", "dot");
         symbolsMap.put("S2", "tree");
         validationHandler = new ParksValidation();
         maps = Arrays.asList(new Level1(), new Level2(), new Level3());

@@ -85,7 +85,7 @@ public class LevelsActivity extends AppCompatActivity {
     private void addLinkToGames(Context context) {
         ImageView gamesLink = findViewById(R.id.gamesLink);
 
-        int icon = IconProvider.getDrawable(getApplicationContext(), "home_icon");
+        int icon = IconProvider.getDrawable(getApplicationContext(), "ic_apps_black_24dp");
         gamesLink.setImageIcon(Icon.createWithResource(context, icon));
 
         gamesLink.setOnClickListener(v -> {

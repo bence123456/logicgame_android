@@ -1,62 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginTop="16dp"
-    tools:context="com.bkonecsni.logicgame.activities.RulesActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/rulesTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Title" />
-
-    <TextView
-        android:id="@+id/summaryDivider"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="16dp"
-        android:background="@android:color/darker_gray"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rulesTitle"
-        android:text="Summary" />
+        tools:context="com.bkonecsni.logicgame.activities.RulesActivity">
 
-    <TextView
-        android:id="@+id/summary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:textSize="20sp"
-        android:lineSpacingExtra="5dp"
-        android:gravity="start"
-        app:layout_constraintBottom_toTopOf="@+id/rulesDivider"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/summaryDivider" />
+        <TextView
+            android:id="@+id/rulesTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Title" />
 
-    <TextView
-        android:id="@+id/rulesDivider"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:background="@android:color/darker_gray"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        app:layout_constraintTop_toBottomOf="@+id/summary"
-        android:text="Detailed Rules" />
+        <TextView
+            android:id="@+id/summaryDivider"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rulesTitle"
+            android:text="Summary" />
+
+        <TextView
+            android:id="@+id/summary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="20sp"
+            android:lineSpacingExtra="5dp"
+            android:gravity="start"
+            app:layout_constraintBottom_toTopOf="@+id/rulesDivider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/summaryDivider" />
+
+        <TextView
+            android:id="@+id/rulesDivider"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/darker_gray"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/summary"
+            android:text="Detailed Rules" />
 
         <TextView
             android:id="@+id/rules"
@@ -71,4 +75,5 @@
             android:maxLines="20"
             app:layout_constraintTop_toBottomOf="@+id/rulesDivider" />
 
-</android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

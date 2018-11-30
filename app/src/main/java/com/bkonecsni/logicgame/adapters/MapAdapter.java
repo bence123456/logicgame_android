@@ -57,7 +57,8 @@ public class MapAdapter extends BaseAdapter {
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
             imageView.setLayoutParams(layoutParams);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+            int padding = 40;
+            imageView.setPadding(padding, padding, padding, padding);
         } else {
             imageView = (ImageView) convertView;
         }
