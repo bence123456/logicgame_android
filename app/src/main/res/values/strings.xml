@@ -9,12 +9,22 @@
     <string name="lighten_up_description">Lighten your whole room!</string>
     <string name="sumscrapers_description">Find the skyline!</string>
     <string name="skyscrapers_description">Sum the skyline!</string>
+    <string name="tents_description">Each camper wants his/her shade and privacy as well!</string>
+    <string name="abc_description">It is easy as ABC. Almost!</string>
+    <string name="snake_description">It is back from your old phone!</string>
+    <string name="sentinels_description">Control the entire garden with sentinels!</string>
+    <string name="binary_sudoku_description">The famous sudoku with a binary switch!</string>
 
     <string name="parks_summary">Plant one tree in each Park, row and column.</string>
     <string name="minesweeper_summary">I know you are familiar with this one :)</string>
     <string name="lighten_up_summary">Place lightbulbs to light up all the room squares.</string>
     <string name="sumscrapers_summary">Guess the sum of the skyscrapers from the skyline.</string>
     <string name="skyscrapers_summary">Guess skyscrapers from the skyline.</string>
+    <string name="tents_summary">Each camper wants his/her shade and privacy as well!</string>
+    <string name="abc_summary">Fill the board with ABC.</string>
+    <string name="snake_summary">Complete the snake, head to tail, inside the board.</string>
+    <string name="sentinels_summary">Control every tile without splitting the garden.</string>
+    <string name="binary_sudoku_summary">Fill the tiles with zero or one.</string>
 
     <string name="parks_rules">You have a few differently coloured areas, called Parks on the board.\n The goal is to plant trees, following the given rules:\n\n
         1. A tree can not touch another tree, not even diagonally.\n
@@ -33,4 +43,10 @@
         The goal is to guess the height of each Skyscraper.\n Skysrapers height ranges from 1 to the size of the city (number or rows/columns).\n
         Each row and column can not have two Skyscrapers with same height. \n Outside the city, on the borders, the numbers indicate the \'Skyline\'.\n
         The Skyline tells you how many Skyscrapers you can see from there, keeping in mind that a higher Skyscraper hides a lower one.</string>
+    <string name="tents_rules">TODO</string>
+    <string name="abc_rules">TODO</string>
+    <string name="snake_rules">TODO</string>
+    <string name="sentinels_rules">TODO</string>
+    <string name="binary_sudoku_rules">TODO</string>
+
 </resources>

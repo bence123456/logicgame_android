@@ -1,0 +1,15 @@
+package com.bkonecsni.logicgame.gamecode.tents.validation;
+
+import com.bkonecsni.logicgame.domain.common.Item;
+import com.bkonecsni.logicgame.domain.map.LevelBase;
+import com.bkonecsni.logicgame.domain.map.TileBase;
+import com.bkonecsni.logicgame.domain.validation.ValidationBase;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TentsValidation extends ValidationBase {
+
+    public boolean areWinConditionsApply(LevelBase map) {
+        return false;
+    }
+}
