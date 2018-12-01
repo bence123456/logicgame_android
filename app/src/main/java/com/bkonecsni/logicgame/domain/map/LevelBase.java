@@ -343,6 +343,31 @@ public abstract class LevelBase {
         return true;
     }
 
+    public boolean rightAndBottomHelperTilesAreValid(Item item) {
+        int rowNr = getRowNumber() - 1;
+        int columnNr = getColumnNumber() - 1;
+
+        for (int i=0; i<rowNr; i++) {
+            int expectedTentsInRow = getTile(i, columnNr).getIntValue(1);
+            List<TileBase> tentTilesFromRow = getTilesWithGivenItem(getTilesFromRow(i), item);
+
+            if (tentTilesFromRow.size() != expectedTentsInRow) {
+                return false;
+            }
+        }
+
+        for (int j=0; j<columnNr; j++) {
+            int expectedTentsInColumn = getTile(rowNr, j).getIntValue(1);
+            List<TileBase> tentTilesFromColumn = getTilesWithGivenItem(getTilesFromColumn(j), item);
+
+            if (tentTilesFromColumn.size() != expectedTentsInColumn) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private void addDiagonaNeighbours(List<TileBase> tiles, int rowNr, int columnNr) {
         addNeighbourToListIfExists(rowNr-1, columnNr-1, tiles);
         addNeighbourToListIfExists(rowNr-1, columnNr+1, tiles);
