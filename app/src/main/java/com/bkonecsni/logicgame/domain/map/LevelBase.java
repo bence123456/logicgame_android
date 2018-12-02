@@ -139,7 +139,7 @@ public abstract class LevelBase {
         List<TileBase> tilesInRow = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            if (getRowNumber(tile) == rowNumber && !tile.isUnmutableType()) {
+            if (getRowNumber(tile) == rowNumber && unMutableOrIgnored(tile)) {
                 tilesInRow.add(tile);
             }
         }
@@ -151,7 +151,7 @@ public abstract class LevelBase {
         List<TileBase> tilesInColumn = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            if (getColumnNumber(tile) == columnNumber && !tile.isUnmutableType()) {
+            if (getColumnNumber(tile) == columnNumber && unMutableOrIgnored(tile)) {
                 tilesInColumn.add(tile);
             }
         }
@@ -253,7 +253,7 @@ public abstract class LevelBase {
         List<TileBase> tilesWithGivenItem = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            if (tile.getItemList().contains(item) && (considerUnMutable || !tile.isUnmutableType())) {
+            if (tile.getItemList().contains(item) && (unMutableOrIgnored(tile))) {
                 tilesWithGivenItem.add(tile);
             }
         }
@@ -263,6 +263,16 @@ public abstract class LevelBase {
 
     public List<TileBase> getTilesWithGivenItem(Item item) {
         return getTilesWithGivenItem(tileList, item);
+    }
+
+    public boolean numberOfItemsInAllRowAndColumn(int expectedNumber, List<Item> items) {
+        for (Item item : items) {
+            if (!numberOfItemsInAllColumn(item, expectedNumber) || !numberOfItemsInAllRow(item, expectedNumber)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public boolean numberOfItemsInAllRow(Item item, int expectedNumber) {
@@ -401,7 +411,7 @@ public abstract class LevelBase {
     }
 
     private void removeTilesWithBorderType(List<TileBase> tmpTiles) {
-        tmpTiles.removeIf(actualTile -> actualTile.isUnmutableType());
+        tmpTiles.removeIf(actualTile -> actualTile.isUnmutableType() && !considerUnMutable);
     }
 
     private void addNeighboursToListIfExists(TileBase tile, List<TileBase> tiles) {
@@ -423,7 +433,7 @@ public abstract class LevelBase {
     private void addNeighbourToListIfExists(int row, int column, List<TileBase> tiles) {
         TileBase tile = getTile(row, column);
 
-        if (tile != null && (considerUnMutable || !tile.isUnmutableType())) {
+        if (tile != null && unMutableOrIgnored(tile)) {
             tiles.add(tile);
         }
     }
@@ -469,6 +479,10 @@ public abstract class LevelBase {
 
     private int getColumnNumber(TileBase tile) {
         return tile.getPosition().y;
+    }
+
+    private boolean unMutableOrIgnored(TileBase tile) {
+        return considerUnMutable || !tile.isUnmutableType();
     }
 
     public List<TileBase> getTileList() {
