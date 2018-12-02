@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.domain.map.LevelBase;
+import com.bkonecsni.logicgame.gamecode.abc.AbcGameInfo;
 import com.bkonecsni.logicgame.gamecode.lighten_up.Lighten_upGameInfo;
 import com.bkonecsni.logicgame.gamecode.minesweeper.MinesweeperGameInfo;
 import com.bkonecsni.logicgame.gamecode.parks.ParksGameInfo;
@@ -26,7 +27,8 @@ public class GameUtil {
 
     private GameUtil() {
       gameInfoList = Arrays.asList(new ParksGameInfo(), new MinesweeperGameInfo(), new Lighten_upGameInfo(),
-              new SumscrapersGameInfo(), new SkyscrapersGameInfo(), new TentsGameInfo(), new SnakeGameInfo());
+              new SumscrapersGameInfo(), new SkyscrapersGameInfo(), new TentsGameInfo(), new SnakeGameInfo(),
+              new AbcGameInfo());
 
         for (AbstractGameInfo gameInfo : gameInfoList) {
             gameInfo.init();

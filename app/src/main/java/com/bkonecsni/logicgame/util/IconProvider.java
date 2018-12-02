@@ -17,8 +17,7 @@ public class IconProvider {
         Icon icon = null;
 
         if (item.getCharValue() != null) {
-            int drawable = CharIconMap.getDrawableIcon(item.getCharValue());
-//            int drawable = getDrawable(String.valueOf(item.getCharValue()).toLowerCase());
+            int drawable = getDrawable(context, String.valueOf(item.getCharValue()).toLowerCase());
             icon = Icon.createWithResource(context, drawable);
         } else if (item.getIntValue() != null) {
             int drawable = NumberIconMap.getDrawableIcon(item.getIntValue());
