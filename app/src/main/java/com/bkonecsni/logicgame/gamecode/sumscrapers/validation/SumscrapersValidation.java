@@ -30,7 +30,11 @@ public class SumscrapersValidation extends ValidationBase {
                 }
             }
         }
-        boolean valid = map.numberOfItemsInAllRow(Item.createWithIntValue(1), 1) && map.numberOfItemsInAllRow(Item.createWithIntValue(2), 1) && map.numberOfItemsInAllRow(Item.createWithIntValue(3), 1) && map.numberOfItemsInAllRow(Item.createWithIntValue(4), 1) && map.numberOfItemsInAllColumn(Item.createWithIntValue(1), 1) && map.numberOfItemsInAllColumn(Item.createWithIntValue(2), 1) && map.numberOfItemsInAllColumn(Item.createWithIntValue(3), 1) && map.numberOfItemsInAllColumn(Item.createWithIntValue(4), 1);
-        return valid;
+        List<Item> checkedItems = new ArrayList();
+        checkedItems.add(Item.createWithIntValue(1));
+        checkedItems.add(Item.createWithIntValue(2));
+        checkedItems.add(Item.createWithIntValue(3));
+        checkedItems.add(Item.createWithIntValue(4));
+        return map.numberOfItemsInAllRowAndColumn(1, checkedItems);
     }
 }

@@ -28,7 +28,10 @@ public class AbcValidation extends ValidationBase {
                 }
             }
         }
-        boolean valid = map.numberOfItemsInAllRow(Item.createWithCharValue('A'), 1) && map.numberOfItemsInAllRow(Item.createWithCharValue('B'), 1) && map.numberOfItemsInAllRow(Item.createWithCharValue('C'), 1) && map.numberOfItemsInAllColumn(Item.createWithCharValue('A'), 1) && map.numberOfItemsInAllColumn(Item.createWithCharValue('B'), 1) && map.numberOfItemsInAllColumn(Item.createWithCharValue('C'), 1);
-        return valid;
+        List<Item> checkedItems = new ArrayList();
+        checkedItems.add(Item.createWithCharValue('A'));
+        checkedItems.add(Item.createWithCharValue('B'));
+        checkedItems.add(Item.createWithCharValue('C'));
+        return map.numberOfItemsInAllRowAndColumn(1, checkedItems);
     }
 }

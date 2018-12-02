@@ -14,7 +14,6 @@ public class Binary_sudokuValidation extends ValidationBase {
         int rowAndColumnNr = map.getRowNumber();
         int expectedNumber = rowAndColumnNr / 2;
         List<Item> checkedItems = new ArrayList();
-        ;
         checkedItems.add(Item.createWithIntValue(0));
         checkedItems.add(Item.createWithIntValue(1));
         if (!map.numberOfItemsInAllRowAndColumn(expectedNumber, checkedItems)) {
