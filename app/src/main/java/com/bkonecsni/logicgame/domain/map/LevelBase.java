@@ -139,7 +139,7 @@ public abstract class LevelBase {
         List<TileBase> tilesInRow = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            if (getRowNumber(tile) == rowNumber && unMutableOrIgnored(tile)) {
+            if (getRowNumber(tile) == rowNumber && playableOrIgnored(tile)) {
                 tilesInRow.add(tile);
             }
         }
@@ -151,7 +151,7 @@ public abstract class LevelBase {
         List<TileBase> tilesInColumn = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            if (getColumnNumber(tile) == columnNumber && unMutableOrIgnored(tile)) {
+            if (getColumnNumber(tile) == columnNumber && playableOrIgnored(tile)) {
                 tilesInColumn.add(tile);
             }
         }
@@ -185,10 +185,10 @@ public abstract class LevelBase {
         return tiles;
     }
 
-    public List<TileBase> getNeighboursForTile(TileBase tile) {
+    public List<TileBase> getNeighboursForTile(TileBase tile, boolean addDiagonals) {
         List<TileBase> tiles = new ArrayList<>();
 
-        addNeighboursToListIfExists(tile, tiles);
+        addNeighboursToListIfExists(tile, tiles, addDiagonals);
 
         return tiles;
     }
@@ -216,6 +216,25 @@ public abstract class LevelBase {
         return tiles;
     }
 
+    public List<TileBase> getTilesInHorizontalAndVerticalLine(TileBase tile, boolean shouldIncludeItself, Item linebreakingItem) {
+        List<TileBase> tiles = new ArrayList<>();
+        if (shouldIncludeItself) {
+            tiles.add(tile);
+        }
+
+        int rowNr = getRowNumber(tile);
+        int columnNr = getColumnNumber(tile);
+        int lastPlayableRowIndex = getLastPlayableRowIndex();
+        int lastPlayableColumnIndex = getLastPlayableColumnIndex();
+
+        addTilesInHorizontalOrVerticalLine(tiles, columnNr+1, lastPlayableColumnIndex, 1, true, rowNr, linebreakingItem);
+        addTilesInHorizontalOrVerticalLine(tiles, columnNr-1, 0, -1, true, rowNr, linebreakingItem);
+        addTilesInHorizontalOrVerticalLine(tiles, rowNr+1, lastPlayableRowIndex, 1, false, columnNr, linebreakingItem);
+        addTilesInHorizontalOrVerticalLine(tiles, rowNr-1, 0, -1, false, columnNr, linebreakingItem);
+
+        return tiles;
+    }
+
     public List<TileBase> getTilesInHorizontalAndVerticalLine(TileBase tile, boolean shouldIncludeItself) {
         List<TileBase> tiles = new ArrayList<>();
         if (shouldIncludeItself) {
@@ -227,21 +246,24 @@ public abstract class LevelBase {
         int lastPlayableRowIndex = getLastPlayableRowIndex();
         int lastPlayableColumnIndex = getLastPlayableColumnIndex();
 
-        addTilesInHorizontalOrVerticalLine(tiles, columnNr+1, lastPlayableColumnIndex, 1, true, rowNr);
-        addTilesInHorizontalOrVerticalLine(tiles, columnNr-1, 0, -1, true, rowNr);
-        addTilesInHorizontalOrVerticalLine(tiles, rowNr+1, lastPlayableRowIndex, 1, false, columnNr);
-        addTilesInHorizontalOrVerticalLine(tiles, rowNr-1, 0, -1, false, columnNr);
+        addTilesInHorizontalOrVerticalLine(tiles, columnNr+1, lastPlayableColumnIndex, 1, true, rowNr, null);
+        addTilesInHorizontalOrVerticalLine(tiles, columnNr-1, 0, -1, true, rowNr, null);
+        addTilesInHorizontalOrVerticalLine(tiles, rowNr+1, lastPlayableRowIndex, 1, false, columnNr, null);
+        addTilesInHorizontalOrVerticalLine(tiles, rowNr-1, 0, -1, false, columnNr, null);
 
         return tiles;
     }
 
     public void addTilesInHorizontalOrVerticalLine(List<TileBase> tiles, int startIndex, int endIndex, int increment,
-                                                   boolean isHorizontal, int rowOrColumnIndex) {
+                                                   boolean isHorizontal, int rowOrColumnIndex, Item linebreakingItem) {
 
         for (int i=startIndex; endIndex == 0 ? i>=endIndex : i<=endIndex; i=i+increment) {
             TileBase tile = isHorizontal ? getTile(rowOrColumnIndex, i) : getTile(i, rowOrColumnIndex);
-
-            if (!tile.isUnmutableType()) {
+            if (playableOrIgnored(tile)) {
+                Item item = tile.getItem(1);
+                if (item != null && item.equals(linebreakingItem)) {
+                    break;
+                }
                 tiles.add(tile);
             } else {
                 break;
@@ -253,7 +275,7 @@ public abstract class LevelBase {
         List<TileBase> tilesWithGivenItem = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            if (tile.getItemList().contains(item) && (unMutableOrIgnored(tile))) {
+            if (tile.getItemList().contains(item) && (playableOrIgnored(tile))) {
                 tilesWithGivenItem.add(tile);
             }
         }
@@ -317,11 +339,11 @@ public abstract class LevelBase {
         return true;
     }
 
-    public boolean twoNeighbouringSymbolsExists(Item symbolItem) {
+    public boolean twoNeighbouringSymbolsExists(Item symbolItem, boolean addDiagonals) {
         List<TileBase> tilesWithGivenItem = getTilesWithGivenItem(symbolItem);
 
         for (TileBase tile : tilesWithGivenItem) {
-            List<TileBase> neighbourTiles =  getNeighboursForTile(tile);
+            List<TileBase> neighbourTiles =  getNeighboursForTile(tile, addDiagonals);
             for (TileBase neighbourTile : neighbourTiles) {
                 if (neighbourTile.getItemList().contains(symbolItem)) {
                     return true;
@@ -332,13 +354,17 @@ public abstract class LevelBase {
         return false;
     }
 
+    public boolean twoNeighbouringSymbolsExists(Item symbolItem) {
+        return twoNeighbouringSymbolsExists(symbolItem, true);
+    }
+
     public boolean neighboursHaveCorrectNumberOfItems(Item item) {
         for (TileBase tile : tileList) {
             if (tile.isUnmutableType()) {
                 int expectedNrOfItems = tile.getItemList().get(1).getIntValue();
                 int actualNrOfItems = 0;
 
-                for (TileBase unMutableTileNeighbour : getNeighboursForTile(tile)) {
+                for (TileBase unMutableTileNeighbour : getNeighboursForTile(tile, true)) {
                     if (unMutableTileNeighbour.getItemList().contains(item)) {
                         actualNrOfItems++;
                     }
@@ -414,12 +440,14 @@ public abstract class LevelBase {
         tmpTiles.removeIf(actualTile -> actualTile.isUnmutableType() && !considerUnMutable);
     }
 
-    private void addNeighboursToListIfExists(TileBase tile, List<TileBase> tiles) {
+    private void addNeighboursToListIfExists(TileBase tile, List<TileBase> tiles, boolean addDiagonals) {
         int rowNr = getRowNumber(tile);
         int columnNr = getColumnNumber(tile);
 
         addHorizontalAndVerticalNeighbours(tiles, rowNr, columnNr);
-        addDiagonaNeighbours(tiles, rowNr, columnNr);
+        if (addDiagonals) {
+            addDiagonaNeighbours(tiles, rowNr, columnNr);
+        }
     }
 
     private void addHorizontalAndVerticalNeighbours(List<TileBase> tiles, int rowNr, int columnNr) {
@@ -433,7 +461,7 @@ public abstract class LevelBase {
     private void addNeighbourToListIfExists(int row, int column, List<TileBase> tiles) {
         TileBase tile = getTile(row, column);
 
-        if (tile != null && unMutableOrIgnored(tile)) {
+        if (tile != null && playableOrIgnored(tile)) {
             tiles.add(tile);
         }
     }
@@ -481,7 +509,7 @@ public abstract class LevelBase {
         return tile.getPosition().y;
     }
 
-    private boolean unMutableOrIgnored(TileBase tile) {
+    private boolean playableOrIgnored(TileBase tile) {
         return considerUnMutable || !tile.isUnmutableType();
     }
 

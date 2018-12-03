@@ -9,6 +9,7 @@ import com.bkonecsni.logicgame.gamecode.binary_sudoku.Binary_sudokuGameInfo;
 import com.bkonecsni.logicgame.gamecode.lighten_up.Lighten_upGameInfo;
 import com.bkonecsni.logicgame.gamecode.minesweeper.MinesweeperGameInfo;
 import com.bkonecsni.logicgame.gamecode.parks.ParksGameInfo;
+import com.bkonecsni.logicgame.gamecode.sentinels.SentinelsGameInfo;
 import com.bkonecsni.logicgame.gamecode.skyscrapers.SkyscrapersGameInfo;
 import com.bkonecsni.logicgame.gamecode.snake.SnakeGameInfo;
 import com.bkonecsni.logicgame.gamecode.sumscrapers.SumscrapersGameInfo;
@@ -29,7 +30,7 @@ public class GameUtil {
     private GameUtil() {
       gameInfoList = Arrays.asList(new ParksGameInfo(), new MinesweeperGameInfo(), new Lighten_upGameInfo(),
               new SumscrapersGameInfo(), new SkyscrapersGameInfo(), new TentsGameInfo(), new SnakeGameInfo(),
-              new AbcGameInfo(), new Binary_sudokuGameInfo());
+              new AbcGameInfo(), new Binary_sudokuGameInfo(), new SentinelsGameInfo());
 
         for (AbstractGameInfo gameInfo : gameInfoList) {
             gameInfo.init();
