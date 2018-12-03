@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Icon;
 import android.support.annotation.NonNull;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -54,7 +55,26 @@ public class MapAdapter extends BaseAdapter {
         ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(parent.getContext());
-            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 150);
+
+            double rowsAndColumns = Math.sqrt(tileList.size());
+            Log.d("MapAdapter", "Parent: " + parent + ", width: " + parent.getWidth());
+            int height = 160;
+
+            if (rowsAndColumns < 5) {
+                height = 320;
+            } else if (rowsAndColumns == 5) {
+                height = 256;
+            } else if (rowsAndColumns == 6) {
+                height = 213;
+            }  else if (rowsAndColumns == 7) {
+                height = 183;
+            } else if (rowsAndColumns == 9) {
+                height = 142;
+            }
+
+//            Double height = parent.getWidth() / rowsAndColumns;
+
+            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
             imageView.setLayoutParams(layoutParams);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             int padding = 40;
