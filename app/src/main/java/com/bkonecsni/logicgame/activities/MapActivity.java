@@ -125,7 +125,7 @@ public class MapActivity extends AppCompatActivity {
         toast.setGravity(Gravity.CENTER, 0, 150);
 
         View view = toast.getView();
-        view.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.SRC_IN);
+        view.getBackground().setColorFilter(getResources().getColor(R.color.green, null), PorterDuff.Mode.SRC_IN);
         TextView text = view.findViewById(android.R.id.message);
         text.setTextColor(Color.BLACK);
 

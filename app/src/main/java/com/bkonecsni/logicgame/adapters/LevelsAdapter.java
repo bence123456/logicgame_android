@@ -15,6 +15,8 @@ import com.bkonecsni.logicgame.domain.map.LevelBase;
 import java.util.Arrays;
 import java.util.List;
 
+import logicgame.bkonecsni.com.logicgame.R;
+
 public class LevelsAdapter extends BaseAdapter {
 
     private List<LevelBase> levelList;
@@ -55,7 +57,7 @@ public class LevelsAdapter extends BaseAdapter {
         List<String> solvedLevelsList = Arrays.asList(solvedLevels.split(","));
 
         if (solvedLevelsList.contains(String.valueOf(position ))) {
-            textView.setBackgroundColor(Color.GREEN);
+            textView.setBackgroundColor(textView.getResources().getColor(R.color.green, null));
         } else {
             textView.setBackgroundColor(Color.GRAY);
         }
