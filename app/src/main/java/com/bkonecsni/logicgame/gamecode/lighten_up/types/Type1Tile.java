@@ -22,13 +22,13 @@ public class Type1Tile extends CommonComplexTile {
                 itemList.remove(symbolItem);
                 List<TileBase> horizontalAndVerticalLineTiles = map.getTilesInHorizontalAndVerticalLine(this, true);
                 for (TileBase tile : horizontalAndVerticalLineTiles) {
-                    Item item = tile.getItem(1);
-                    if (tileHasSamePosition(tile) || map.isNull(item) || !item.equals(Item.createWithSymbol("S2"))) {
+                    List<Item> lineTileItemList = tile.getItemList();
+                    if (tileHasSamePosition(tile) || !lineTileItemList.contains(Item.createWithSymbol("S2"))) {
                         List<TileBase> horizontalAndVerticalLineTilesForTile = map.getTilesInHorizontalAndVerticalLine(tile, false);
                         boolean shouldReplaceColor = true;
                         for (TileBase neighbourTile : horizontalAndVerticalLineTilesForTile) {
-                            Item neighbourTileItem = neighbourTile.getItem(1);
-                            if (!tileHasSamePosition(neighbourTile) && !map.isNull(neighbourTileItem) && neighbourTileItem.equals(Item.createWithSymbol("S2"))) {
+                            List<Item> neighbourTileItemList = neighbourTile.getItemList();
+                            if (!tileHasSamePosition(neighbourTile) && neighbourTileItemList.contains(Item.createWithSymbol("S2"))) {
                                 shouldReplaceColor = false;
                                 break;
                             }

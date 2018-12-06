@@ -19,13 +19,6 @@ public abstract class LevelBase {
         return object == null;
     }
 
-    public void setItemListForTile(Point position, List<Item> itemList) {
-        TileBase tile = getTile(position.x, position.y);
-        if (tile != null) {
-            tile.setItemList(itemList);
-        }
-    }
-
     public TileBase getTile(int row, int column) {
         for (TileBase tile : tileList) {
             if (getRowNumber(tile) == row && getColumnNumber(tile) == column) {
@@ -163,7 +156,7 @@ public abstract class LevelBase {
         List<String> colors = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            String tileColor = tile.getItemList().get(0).getColor();
+            String tileColor = getItem(tile, 0).getColor();
             if (!colors.contains(tileColor) && !tile.isUnmutableType()) {
                 colors.add(tileColor);
             }
@@ -176,7 +169,7 @@ public abstract class LevelBase {
         List<TileBase> tiles = new ArrayList<>();
 
         for (TileBase tile : tileList) {
-            String tileColor = tile.getItemList().get(0).getColor();
+            String tileColor = getItem(tile, 0).getColor();
             if (tileColor.equals(color) && !tile.isUnmutableType()) {
                 tiles.add(tile);
             }
@@ -361,7 +354,7 @@ public abstract class LevelBase {
     public boolean neighboursHaveCorrectNumberOfItems(Item item) {
         for (TileBase tile : tileList) {
             if (tile.isUnmutableType()) {
-                int expectedNrOfItems = tile.getItemList().get(1).getIntValue();
+                int expectedNrOfItems = getItem(tile, 1).getIntValue();
                 int actualNrOfItems = 0;
 
                 for (TileBase unMutableTileNeighbour : getNeighboursForTile(tile, true)) {

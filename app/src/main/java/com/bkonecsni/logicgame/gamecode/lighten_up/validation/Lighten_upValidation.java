@@ -18,8 +18,8 @@ public class Lighten_upValidation extends ValidationBase {
                 int actualAdjacentBulbsNr = 0;
                 for (int i = 0; i < neighbourTiles.size(); i++) {
                     TileBase actualTile = neighbourTiles.get(i);
-                    Item symbolItem = actualTile.getItem(1);
-                    if (!map.isNull(symbolItem) && symbolItem.equals(Item.createWithSymbol("S2"))) {
+                    List<Item> itemList = actualTile.getItemList();
+                    if (itemList.contains(Item.createWithSymbol("S2"))) {
                         actualAdjacentBulbsNr += 1;
                     }
                 }
@@ -37,8 +37,8 @@ public class Lighten_upValidation extends ValidationBase {
         for (TileBase bulbTile : tilesWithBulbs) {
             List<TileBase> neighbourTilesForBulbTile = map.getTilesInHorizontalAndVerticalLine(bulbTile, false);
             for (TileBase neighbourTile : neighbourTilesForBulbTile) {
-                Item neighbourSymbolItem = neighbourTile.getItem(1);
-                if (!map.isNull(neighbourSymbolItem) && neighbourSymbolItem.equals(Item.createWithSymbol("S2"))) {
+                List<Item> neighbourItemList = neighbourTile.getItemList();
+                if (neighbourItemList.contains(Item.createWithSymbol("S2"))) {
                     return false;
                 }
             }
