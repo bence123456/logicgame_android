@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class IconProvider {
 
-    public static final String DEFAULT_PACKAGE = "logicgame.bkonecsni.com.logicgame";
+    public static final String DEFAULT_PACKAGE = "com.bkonecsni.logicgame";
 
     public static Icon getIconForMap(Item item, AbstractGameInfo gameInfo, Context context){
         Icon icon = null;
