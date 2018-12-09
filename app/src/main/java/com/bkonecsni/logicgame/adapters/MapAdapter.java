@@ -41,7 +41,6 @@ public class MapAdapter extends BaseAdapter {
         return 0;
     }
 
-    // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView = setupImageView(convertView, parent);
 
@@ -56,23 +55,10 @@ public class MapAdapter extends BaseAdapter {
         if (convertView == null) {
             imageView = new ImageView(parent.getContext());
 
-            double rowsAndColumns = Math.sqrt(tileList.size());
-            Log.d("MapAdapter", "Parent: " + parent + ", width: " + parent.getWidth());
-            int height = 160;
+            int height = 200;
 
-            if (rowsAndColumns < 5) {
-                height = 320;
-            } else if (rowsAndColumns == 5) {
-                height = 256;
-            } else if (rowsAndColumns == 6) {
-                height = 213;
-            }  else if (rowsAndColumns == 7) {
-                height = 183;
-            } else if (rowsAndColumns == 9) {
-                height = 142;
-            }
-
-//            Double height = parent.getWidth() / rowsAndColumns;
+            Double dHeight = parent.getWidth() / Math.sqrt(tileList.size());
+            int calculatedHeight = dHeight.intValue();
 
             ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
             imageView.setLayoutParams(layoutParams);
