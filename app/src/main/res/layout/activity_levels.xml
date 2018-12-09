@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.bkonecsni.logicgame.activities.LevelsActivity">
 
-    <include layout="@layout/game_header"/>
+    <include layout="@layout/levels_header"/>
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/levels"
