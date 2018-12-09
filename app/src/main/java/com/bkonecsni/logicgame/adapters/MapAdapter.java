@@ -3,9 +3,7 @@ package com.bkonecsni.logicgame.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
-import android.support.annotation.NonNull;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -49,25 +47,15 @@ public class MapAdapter extends BaseAdapter {
         return imageView;
     }
 
-    @NonNull
-    private ImageView setupImageView(View convertView, ViewGroup parent) {
-        ImageView imageView;
+    private MapTileItemImageView setupImageView(View convertView, ViewGroup parent) {
+        MapTileItemImageView imageView;
+
         if (convertView == null) {
-            imageView = new ImageView(parent.getContext());
-
-            int height = 200;
-
-            Double dHeight = parent.getWidth() / Math.sqrt(tileList.size());
-            int calculatedHeight = dHeight.intValue();
-
-            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height);
-            imageView.setLayoutParams(layoutParams);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            int padding = 40;
-            imageView.setPadding(padding, padding, padding, padding);
+            imageView = setImageViewAttributes(parent);
         } else {
-            imageView = (ImageView) convertView;
+            imageView = (MapTileItemImageView) convertView;
         }
+
         return imageView;
     }
 
@@ -84,20 +72,34 @@ public class MapAdapter extends BaseAdapter {
         }
     }
 
+    private MapTileItemImageView setImageViewAttributes(ViewGroup parent) {
+        MapTileItemImageView imageView;
+
+        imageView = new MapTileItemImageView(parent.getContext());
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+        imageView.setLayoutParams(layoutParams);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        int padding = 32;
+        imageView.setPadding(padding, padding, padding, padding);
+
+        return imageView;
+    }
+
     public void setTileList(List<TileBase> tileList) {
         this.tileList = tileList;
     }
 
-    class MapTileItem extends android.support.v7.widget.AppCompatImageView {
-        public MapTileItem(Context context) {
+    class MapTileItemImageView extends android.support.v7.widget.AppCompatImageView {
+
+        public MapTileItemImageView(Context context) {
             super(context);
         }
 
-        public MapTileItem(Context context, AttributeSet attrs) {
+        public MapTileItemImageView(Context context, AttributeSet attrs) {
             super(context, attrs);
         }
 
-        public MapTileItem(Context context, AttributeSet attrs, int defStyle) {
+        public MapTileItemImageView(Context context, AttributeSet attrs, int defStyle) {
             super(context, attrs, defStyle);
         }
 

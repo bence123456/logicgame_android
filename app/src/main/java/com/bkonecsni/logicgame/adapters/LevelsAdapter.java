@@ -1,8 +1,11 @@
 package com.bkonecsni.logicgame.adapters;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,19 +31,13 @@ public class LevelsAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        TextView textView;
+    public LevelItemTextView getView(int position, View convertView, ViewGroup parent) {
+        LevelItemTextView textView;
 
         if (convertView == null) {
-            textView = new TextView(parent.getContext());
-            textView.setText(String.valueOf(position + 1));
-            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(200, 200);
-            textView.setLayoutParams(layoutParams);
-            textView.setPadding(16, 16, 16, 16);
-            textView.setTextSize(20);
-            textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            textView = setTextViewAttributes(position, parent);
         } else {
-            textView = (TextView) convertView;
+            textView = (LevelItemTextView) convertView;
         }
 
         if (LevelsActivity.getAppContext() != null) {
@@ -50,7 +47,21 @@ public class LevelsAdapter extends BaseAdapter {
         return textView;
     }
 
-    private void setBackgroundColor(int position, TextView textView) {
+    private LevelItemTextView setTextViewAttributes(int position, ViewGroup parent) {
+        LevelItemTextView textView;
+
+        textView = new LevelItemTextView(parent.getContext());
+        textView.setText(String.valueOf(position + 1));
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(200, 200);
+        textView.setLayoutParams(layoutParams);
+        textView.setPadding(16, 16, 16, 16);
+        textView.setTextSize(20);
+        textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+
+        return textView;
+    }
+
+    private void setBackgroundColor(int position, LevelItemTextView textView) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(LevelsActivity.getAppContext());
         String solvedLevels = preferences.getString(gameName, "");
 
@@ -80,5 +91,25 @@ public class LevelsAdapter extends BaseAdapter {
 
     public void setLevelList(List<LevelBase> levelList) {
         this.levelList = levelList;
+    }
+
+    class LevelItemTextView extends android.support.v7.widget.AppCompatTextView {
+
+        public LevelItemTextView(Context context) {
+            super(context);
+        }
+
+        public LevelItemTextView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
+
+        public LevelItemTextView(Context context, AttributeSet attrs, int defStyle) {
+            super(context, attrs, defStyle);
+        }
+
+        @Override
+        public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+            super.onMeasure(widthMeasureSpec, widthMeasureSpec);
+        }
     }
 }
