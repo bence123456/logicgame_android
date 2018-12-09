@@ -49,6 +49,7 @@ public class LevelsActivity extends AppCompatActivity {
         String gameName = gameInfo.getGameName();
         setGameIcon(context, gameName);
         setGameTitle(gameName);
+        addLinkToHome(context);
         addLinkToGames(context);
     }
 
@@ -82,11 +83,17 @@ public class LevelsActivity extends AppCompatActivity {
         title.setText(StringService.getFormattedTitle(gameName));
     }
 
+    private void addLinkToHome(Context context) {
+        ImageView homeLink = findViewById(R.id.homeLink);
+
+        homeLink.setOnClickListener(v -> {
+            Intent intent = new Intent(context, HomeActivity.class);
+            startActivity(intent);
+        });
+    }
+
     private void addLinkToGames(Context context) {
         ImageView gamesLink = findViewById(R.id.gamesLink);
-
-        int icon = IconProvider.getDrawable(getApplicationContext(), "ic_apps_black_24dp");
-        gamesLink.setImageIcon(Icon.createWithResource(context, icon));
 
         gamesLink.setOnClickListener(v -> {
             Intent intent = new Intent(context, GamesActivity.class);
