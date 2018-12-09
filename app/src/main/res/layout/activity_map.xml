@@ -4,89 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
+    android:layout_marginStart="0.5dp"
     tools:context="com.bkonecsni.logicgame.activities.MapActivity">
 
-    <ImageView
-        android:id="@+id/gameIcon"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:src="@mipmap/ic_launcher"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/gameTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/gameIcon"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Title" />
-
-    <TextView
-        android:id="@+id/levelNumber"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:text="6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.017" />
-
-
-    <!--<TextView-->
-        <!--android:id="@+id/gameTitle"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--android:text="Parks"-->
-        <!--android:textSize="50dp"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintBottom_toTopOf="@id/levelNumber"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<TextView-->
-        <!--android:id="@+id/levelNumber"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="16dp"-->
-        <!--android:text="Level 1"-->
-        <!--android:textSize="30dp"-->
-        <!--android:textStyle="bold"-->
-        <!--app:layout_constraintBottom_toTopOf="@id/map"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/gameTitle" />-->
+    <include android:id="@+id/mapHeader" layout="@layout/map_header"/>
 
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/map"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:horizontalSpacing="1dp"
         android:stretchMode="columnWidth"
         android:verticalSpacing="1dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/gameTitle" />
-
+        app:layout_constraintTop_toBottomOf="@id/mapHeader" />
 
     <ImageView
         android:id="@+id/levels"
@@ -94,12 +29,11 @@
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_more_horiz_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/rules"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/map" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/rules"
@@ -107,12 +41,11 @@
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_rules"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/restart"
-        app:layout_constraintStart_toEndOf="@id/levels"
-        app:layout_constraintTop_toBottomOf="@id/map" />
+        app:layout_constraintStart_toEndOf="@id/levels" />
 
     <ImageView
         android:id="@+id/restart"
@@ -120,11 +53,11 @@
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_refresh_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/nextLevel"
-        app:layout_constraintStart_toEndOf="@id/rules"
-        app:layout_constraintTop_toBottomOf="@id/map" />
+        app:layout_constraintStart_toEndOf="@id/rules" />
 
     <ImageView
         android:id="@+id/nextLevel"
@@ -132,12 +65,10 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_arrow_forward_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/restart"
-        app:layout_constraintTop_toBottomOf="@id/map" />
-
+        app:layout_constraintStart_toEndOf="@id/restart" />
 
 </android.support.constraint.ConstraintLayout>

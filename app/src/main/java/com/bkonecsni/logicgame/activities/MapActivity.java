@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.bkonecsni.logicgame.adapters.MapAdapter;
 import com.bkonecsni.logicgame.domain.common.AbstractGameInfo;
 import com.bkonecsni.logicgame.domain.map.LevelBase;
 import com.bkonecsni.logicgame.util.GameUtil;
+import com.bkonecsni.logicgame.util.IconProvider;
 import com.bkonecsni.logicgame.util.StringService;
 
 import java.util.Arrays;
@@ -44,12 +46,20 @@ public class MapActivity extends AppCompatActivity {
         String gameName = getIntent().getStringExtra(GAME_NAME);
         LevelBase level = GameUtil.getLevel(gameName, levelNumber);
         AbstractGameInfo gameInfo = GameUtil.getGameInfo(gameName);
-
         setColumnNumber(mapView, levelNumber, gameInfo);
+
+        setUpHeader(levelNumber, gameName);
+        addListenerForMap(mapView, level, gameInfo, levelNumber);
+        addListenerForFooter(mapView, levelNumber, level, gameInfo);
+    }
+
+    private void setUpHeader(int levelNumber, String gameName) {
+        setGameIcon(gameName);
         setTitle(gameName);
         setLevelNumber(levelNumber + 1);
+    }
 
-        addListenerForMap(mapView, level, gameInfo, levelNumber);
+    private void addListenerForFooter(GridView mapView, int levelNumber, LevelBase level, AbstractGameInfo gameInfo) {
         addListenerForLevels(gameInfo);
         addListenerForRules();
         addListenerForRestart(mapView, level);
@@ -157,7 +167,15 @@ public class MapActivity extends AppCompatActivity {
 
     private void setLevelNumber(int levelNumber) {
         TextView levelNumberTextView = findViewById(R.id.levelNumber);
-        levelNumberTextView.setText("Level " + levelNumber);
+        levelNumberTextView.setText(String.valueOf(levelNumber));
+    }
+
+    private void setGameIcon(String gameName) {
+        ImageView gameIcon = findViewById(R.id.gameIcon);
+        String iconName = gameName + "_icon";
+
+        int icon = IconProvider.getDrawable(context, iconName);
+        gameIcon.setImageIcon(Icon.createWithResource(context, icon));
     }
 
     private void setTitle(String gameName) {
