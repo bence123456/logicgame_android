@@ -24,7 +24,7 @@
     <string name="abc_summary">Fill the board with ABC.</string>
     <string name="snake_summary">Complete the snake, head to tail, inside the board.</string>
     <string name="sentinels_summary">Control every tile without splitting the garden.</string>
-    <string name="binary_sudoku_summary">Fill the tiles with zero or one.</string>
+    <string name="binary_sudoku_summary">Fill the board with zeros and ones.</string>
 
     <string name="parks_rules">You have a few differently coloured areas, called Parks on the board.\n The goal is to plant trees, following the given rules:\n\n
         1. A tree can not touch another tree, not even diagonally.\n
@@ -43,10 +43,21 @@
         The goal is to guess the height of each Skyscraper.\n Skysrapers height ranges from 1 to the size of the city (number or rows/columns).\n
         Each row and column can not have two Skyscrapers with same height. \n Outside the city, on the borders, the numbers indicate the \'Skyline\'.\n
         The Skyline tells you how many Skyscrapers you can see from there, keeping in mind that a higher Skyscraper hides a lower one.</string>
-    <string name="tents_rules">TODO</string>
-    <string name="abc_rules">TODO</string>
-    <string name="snake_rules">TODO</string>
-    <string name="sentinels_rules">TODO</string>
-    <string name="binary_sudoku_rules">TODO</string>
-
+    <string name="tents_rules">The board represents a camping area with some Trees, under which campers want to set their tent.\n
+        This means they want to set their tent horizontally or vertically adjacent to a tree. At the same time they need their privacy too, so a tent can not have another tent touching it, not even diagonally.
+        Numbers on the borders tell you how many tents there are in that row or column.\nFinally keep in mind these two rules:\n\n
+        1. Each tree has at least one tent touching it, horizontally or vertically.
+        2. There is the exact same number of trees and tents in the camping area.\n</string>
+    <string name="abc_rules">In a similar way to \'Skyscrapers\', your goal is to put the letters A, B and C in the boards.\n
+        Each letter appears only once in every row and column, however, differently than Skyscrapers this time you are told what letter you see first from the border.
+        Since most puzzles contain empty spaces, the hint on the border does not always match the tile next to it.\n</string>
+    <string name="snake_rules">The two tiles given at the start are the head and tail of the snake (it is irrelevant which is which). \n
+        Numbers on the border tell you how many tiles the snake occupies in that row or column. The snake can not touch itself, not even diagonally.</string>
+    <string name="sentinels_rules">On the board there are a few Sentinels, marked with a number, which tells you how many tiles that Sentinel can control (see) from there,
+        vertically and horizontally. This includes the tile where he is located, and all free tiles north, south, east and west of the Sentinel.\n
+        Your task is to place Towers in accordance with these number hints, keeping in mind that a Tower blocks the Sentinel View and that two towers can not touch horizontally or vertically.\n </string>
+    <string name="binary_sudoku_rules"> Your task is to fill every tile of the board with either a 1 or a 0.\n There are some numbers already given in each level to help you solve this puzzle.\n
+        The restrictions are:\n\n
+        1. There must be exactly as many ones as zeros in each row and column.\n
+        2. There can not be a sequence of three ones or zeros in any of the rows or columns.\n</string>
 </resources>
