@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.Icon;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,9 +21,10 @@ import java.util.List;
 
 import logicgame.bkonecsni.com.logicgame.R;
 
+import static com.bkonecsni.logicgame.activities.LevelsActivity.GAME_NAME;
 import static com.bkonecsni.logicgame.util.IconProvider.DEFAULT_PACKAGE;
 
-public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class GamesAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     private List<AbstractGameInfo> gameInfoList;
 
@@ -34,14 +36,15 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
 
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         context = viewGroup.getContext();
 
-        return new ViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.game_list_item, viewGroup, false));
+        return new GamesViewHolder(LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.game_list_item, viewGroup, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(ViewHolder viewHolder, int i) {
         String gameName = gameInfoList.get(i).getGameName();
 
         addOnClickListener(viewHolder, gameName);
@@ -54,7 +57,7 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     private void addOnClickListener(@NonNull RecyclerView.ViewHolder viewHolder, String gameName) {
         viewHolder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, LevelsActivity.class);
-            intent.putExtra("gameName", gameName);
+            intent.putExtra(GAME_NAME, gameName);
             context.startActivity(intent);
         });
     }
@@ -83,8 +86,8 @@ public class GamesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         return gameInfoList.size();
     }
 
-    protected static class ViewHolder extends RecyclerView.ViewHolder {
-        public ViewHolder(@NonNull View itemView) {
+    protected static class GamesViewHolder extends ViewHolder {
+        public GamesViewHolder(@NonNull View itemView) {
             super(itemView);
         }
     }
