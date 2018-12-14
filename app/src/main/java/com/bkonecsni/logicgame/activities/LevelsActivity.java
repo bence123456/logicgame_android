@@ -57,7 +57,6 @@ public class LevelsActivity extends AppCompatActivity {
         levelsView.setAdapter(new LevelsAdapter(gameInfo.getMaps(), gameInfo.getGameName()));
 
         levelsView.setOnItemClickListener((parent, v, position, id) -> {
-            ((LevelsAdapter) levelsView.getAdapter()).notifyDataSetChanged();
             startMapActivity(position);
         });
     }

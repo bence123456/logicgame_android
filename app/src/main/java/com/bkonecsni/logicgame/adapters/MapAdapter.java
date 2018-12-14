@@ -3,6 +3,7 @@ package com.bkonecsni.logicgame.adapters;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Icon;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,7 +52,9 @@ public class MapAdapter extends BaseAdapter {
         MapTileItemImageView imageView;
 
         if (convertView == null) {
-            imageView = setImageViewAttributes(parent);
+            imageView = new MapTileItemImageView(parent.getContext());
+            int padding = 32;
+            imageView.setPadding(padding, padding, padding, padding);
         } else {
             imageView = (MapTileItemImageView) convertView;
         }
@@ -72,24 +75,11 @@ public class MapAdapter extends BaseAdapter {
         }
     }
 
-    private MapTileItemImageView setImageViewAttributes(ViewGroup parent) {
-        MapTileItemImageView imageView;
-
-        imageView = new MapTileItemImageView(parent.getContext());
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
-        imageView.setLayoutParams(layoutParams);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        int padding = 32;
-        imageView.setPadding(padding, padding, padding, padding);
-
-        return imageView;
-    }
-
     public void setTileList(List<TileBase> tileList) {
         this.tileList = tileList;
     }
 
-    class MapTileItemImageView extends android.support.v7.widget.AppCompatImageView {
+    class MapTileItemImageView extends AppCompatImageView {
 
         public MapTileItemImageView(Context context) {
             super(context);
