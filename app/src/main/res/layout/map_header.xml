@@ -43,7 +43,7 @@
         android:layout_marginBottom="8dp"
         android:textAlignment="center"
         android:gravity="center"
-        android:textSize="40sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
