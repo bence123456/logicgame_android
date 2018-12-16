@@ -17,6 +17,6 @@ public class Type2Tile extends CommonTile {
 
     @Override
     public void init() {
-        this.typeStatementList = Arrays.asList(new TypeStatement(Arrays.asList(new Condition(0, Item.createWithColor("#FFFFFF"))), Arrays.asList(new Update(0, Item.createWithColor("#808080")))), new TypeStatement(Arrays.asList(new Condition(0, Item.createWithColor("#808080")), new Condition(1, null)), Arrays.asList(new Update(1, Item.createWithSymbol("S1")))), new TypeStatement(Arrays.asList(new Condition(1, Item.createWithSymbol("S1"))), Arrays.asList(new Update(1, null), new Update(0, Item.createWithColor("#FFFFFF")))));
+        this.typeStatementList = Arrays.asList(new TypeStatement(Arrays.asList(new Condition(0, Item.createWithColor("#000000"))), Arrays.asList(new Update(0, Item.createWithColor("#808080")))), new TypeStatement(Arrays.asList(new Condition(0, Item.createWithColor("#808080")), new Condition(1, null)), Arrays.asList(new Update(1, Item.createWithSymbol("S1")))), new TypeStatement(Arrays.asList(new Condition(1, Item.createWithSymbol("S1"))), Arrays.asList(new Update(1, null), new Update(0, Item.createWithColor("#000000")))));
     }
 }
