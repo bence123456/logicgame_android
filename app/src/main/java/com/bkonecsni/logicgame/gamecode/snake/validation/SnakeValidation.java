@@ -16,9 +16,9 @@ public class SnakeValidation extends ValidationBase {
         TileBase lastSnakeTile = map.getTile(lastSnakePartPos, lastSnakePartPos);
         Item firstSnakeItem = firstSnakeTile.getItem(0);
         Item lastSnakeItem = lastSnakeTile.getItem(0);
-        if (!firstSnakeItem.equals(Item.createWithColor("#FFFFFF")) || !lastSnakeItem.equals(Item.createWithColor("#FFFFFF"))) {
+        if (!firstSnakeItem.equals(Item.createWithColor("#000000")) || !lastSnakeItem.equals(Item.createWithColor("#000000"))) {
             return false;
         }
-        return map.rightAndBottomHelperTilesAreValid(Item.createWithColor("#FFFFFF"));
+        return map.rightAndBottomHelperTilesAreValid(Item.createWithColor("#000000"));
     }
 }
